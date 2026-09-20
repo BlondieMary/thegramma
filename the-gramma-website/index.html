@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="THE GRAMMA creates bespoke digital invitations and interactive event websites for weddings, baptisms, birthdays and life's most meaningful celebrations.">
+<meta name="theme-color" content="#F7F3EC">
+<meta property="og:title" content="THE GRAMMA · Every occasion deserves a letter">
+<meta property="og:description" content="Bespoke digital invitations and interactive event websites.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thegramma.com/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>The Gramma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&family=Noto+Serif:ital,wght@1,300&display=swap">
+<style>
+:root{
+  --ivory:#F7F3EC; --ivory-2:#FBF8F2; --sand:#E8DCCB; --sand-deep:#D8C7AE; --champagne:#EBDDBF;
+  --sage:#8C9C84; --sage-deep:#5E7158; --sage-wash:#DDE3D2;
+  --gold:#B58E4F; --gold-lt:#DDBF80; --gold-deep:#8A6A35;
+  --ink:#2A2724; --ink-soft:#5B554D; --hair:rgba(181,142,79,.38);
+  --serif:"Cormorant Garamond","Noto Serif",Georgia,"Times New Roman",serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
+  --script:"Pinyon Script","Snell Roundhand","Brush Script MT",cursive;
+  --noise:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .45  0 0 0 0 .3  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ivory);
+  background-image:radial-gradient(60rem 40rem at 12% 8%,rgba(221,191,128,.28),transparent 60%),radial-gradient(50rem 40rem at 95% 30%,rgba(140,156,132,.20),transparent 60%);
+  color:var(--ink); font-family:var(--sans); font-weight:300; font-size:16px; line-height:1.7;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+}
+body::before{ /* drifting paper grain */
+  content:""; position:fixed; inset:0; z-index:50; pointer-events:none; opacity:.16;
+  background-image:var(--noise); mix-blend-mode:multiply; animation:grain 90s linear infinite;
+}
+@keyframes grain{to{background-position:300px 600px}}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+.wrap{width:100%; max-width:1180px; margin-inline:auto; padding-inline:20px}
+section{scroll-margin-top:64px}
+.sec{padding-block:clamp(4.5rem,9vw,8rem); position:relative}
+.eyebrow{font-family:var(--sans); font-size:.72rem; font-weight:500; letter-spacing:.32em; text-transform:uppercase; color:var(--gold-deep); margin:0 0 1.2rem}
+h2{font-family:var(--serif); font-weight:300; font-size:clamp(2.4rem,5.4vw,4.4rem); line-height:1.02; letter-spacing:-.01em; margin:0 0 1.4rem; text-wrap:balance}
+h2 em{font-family:var(--script); font-style:normal; font-weight:400; color:var(--gold); font-size:1.18em; letter-spacing:0; padding-inline:.04em}
+h3{font-family:var(--serif); font-weight:400; margin:0}
+p{margin:0 0 1rem; max-width:62ch}
+.lede{font-size:1.06rem; color:var(--ink-soft)}
+.center{text-align:center; margin-inline:auto}
+.center p{margin-inline:auto}
+
+/* gold underline that draws itself */
+.uline{position:relative; display:inline-block}
+.uline::after{content:""; position:absolute; left:0; right:0; bottom:-.16em; height:1.5px; background:linear-gradient(90deg,var(--gold-lt),var(--gold),var(--gold-lt)); transform-origin:left}
+.in .uline::after,.uline.in::after{animation:draw 1.6s .35s cubic-bezier(.6,.05,.2,1) backwards}
+@keyframes draw{from{transform:scaleX(0)}}
+
+/* reveal: visible at rest; animates when it enters view */
+.reveal.in{animation:rise 1s cubic-bezier(.2,.7,.2,1) backwards; animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0; transform:translateY(28px)}}
+
+/* buttons */
+.btn{
+  --bx:0px; --by:0px;
+  display:inline-flex; align-items:center; gap:.8rem; position:relative; overflow:hidden; cursor:pointer;
+  font:500 .74rem/1 var(--sans); letter-spacing:.3em; text-transform:uppercase; text-decoration:none;
+  padding:1.2rem 2.5rem; color:var(--ink); background:transparent; border:1px solid var(--gold);
+  transform:translate(var(--bx),var(--by)); transition:transform .25s ease-out,color .4s,box-shadow .4s;
+}
+.btn::before{content:""; position:absolute; inset:0; background:linear-gradient(120deg,var(--gold-lt),var(--gold)); transform:translateY(101%); transition:transform .5s cubic-bezier(.2,.7,.2,1); z-index:-1}
+.btn:hover::before{transform:none}
+.btn:hover{box-shadow:0 10px 30px -10px rgba(138,106,53,.55)}
+.btn.solid{background:var(--ink); color:var(--ivory); border-color:var(--ink)}
+.btn.solid::before{background:linear-gradient(120deg,var(--gold),var(--gold-deep))}
+.btn.solid:hover{color:#fff; border-color:var(--gold)}
+.btn.sm{padding:.85rem 1.5rem; font-size:.66rem}
+.btn{isolation:isolate}
+
+/* nav */
+.nav{position:fixed; top:0; left:0; right:0; z-index:60; padding:calc(14px + env(safe-area-inset-top,0px)) 0 14px; transition:background .4s,box-shadow .4s}
+.nav.scrolled{background:rgba(247,243,236,.86); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 0 var(--hair)}
+.nav .wrap{display:flex; align-items:center; justify-content:space-between; gap:1rem}
+.brand{font-family:var(--serif); font-weight:500; letter-spacing:.34em; font-size:1.02rem; text-decoration:none}
+.nav ul{display:flex; gap:2.1rem; list-style:none; margin:0; padding:0}
+.nav ul a{font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; text-decoration:none; color:var(--ink-soft); position:relative; padding-block:.4rem}
+.nav ul a::after{content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .5s}
+.nav ul a:hover::after{transform:scaleX(1)}
+@media(max-width:860px){.nav ul{display:none}}
+
+/* hero */
+.hero{position:relative; overflow:hidden; padding-block:8rem 6.5rem; text-align:center; isolation:isolate}
+.words{position:absolute; inset:0; z-index:-2; display:flex; flex-direction:column; justify-content:space-around; overflow:hidden;
+  -webkit-mask-image:radial-gradient(ellipse 48% 52% at 50% 46%,rgba(0,0,0,.16),#000 88%); mask-image:radial-gradient(ellipse 48% 52% at 50% 46%,rgba(0,0,0,.16),#000 88%)}
+.wrow{font-family:var(--script); line-height:1.25; white-space:nowrap; color:var(--c); opacity:.5}
+.wtrack{display:flex; width:max-content; animation:drift var(--dur,140s) linear infinite}
+.wtrack span{padding-inline:1.1em}
+.wtrack i{font-style:normal; opacity:.6}
+@keyframes drift{to{transform:translateX(-50%)}}
+#sparkles{position:absolute; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none}
+.hero-inner{position:relative}
+.hero-inner::before{content:""; position:absolute; inset:-3rem -2rem; z-index:-1; background:radial-gradient(ellipse at 50% 48%,rgba(247,243,236,.92) 0 42%,rgba(247,243,236,0) 72%)}
+.seal{width:clamp(210px,30vw,310px); height:auto; display:block; margin:0 auto 1.4rem; filter:drop-shadow(0 22px 26px rgba(138,106,53,.35)) drop-shadow(0 4px 6px rgba(138,106,53,.25))}
+.seal .spin{transform-box:fill-box; transform-origin:center; animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.greek{font-family:var(--serif),"Noto Serif"; font-style:italic; color:var(--gold-deep); letter-spacing:.14em; font-size:1.05rem; margin:0 auto .4rem}
+.hero h1{font-family:var(--serif); font-weight:300; font-size:clamp(3rem,10.5vw,8.6rem); line-height:.95; letter-spacing:.1em; margin:0 0 1.4rem; padding-left:.1em}
+.hero .sub{font-family:var(--serif); font-style:italic; font-weight:300; font-size:clamp(1.35rem,3vw,2rem); color:var(--ink-soft); margin:0 auto 2.6rem}
+.hero .sub b{font-weight:300; font-family:var(--script); font-style:normal; color:var(--gold); font-size:1.15em}
+
+/* experiences */
+.packs{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,2.6vw,2.4rem); align-items:center; margin-top:3.6rem}
+.float{animation:float 7.5s ease-in-out infinite; animation-delay:var(--fd,0s)}
+@keyframes float{50%{transform:translateY(-12px)}}
+.pack{position:relative; padding:2.6rem 2rem 2.2rem; background:linear-gradient(180deg,var(--ivory-2),#F4EEE2); border:1px solid var(--sand-deep); box-shadow:0 30px 50px -34px rgba(90,70,30,.45); transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s,border-color .6s; display:flex; flex-direction:column; min-height:100%}
+.pack::before{content:""; position:absolute; inset:0; background-image:var(--noise); opacity:.13; mix-blend-mode:multiply; pointer-events:none}
+.pack:hover{transform:translateY(-14px); box-shadow:0 46px 60px -34px rgba(90,70,30,.55); border-color:var(--gold)}
+.pack.feat{padding-block:3.4rem 3rem; background:linear-gradient(170deg,#FFF9EA,var(--champagne)); border-color:var(--gold); box-shadow:0 0 0 6px rgba(221,191,128,.16),0 40px 60px -30px rgba(138,106,53,.6)}
+.tag{position:absolute; top:-.85rem; left:50%; transform:translateX(-50%); background:linear-gradient(120deg,var(--gold-lt),var(--gold)); color:#fff; font-size:.64rem; font-weight:500; letter-spacing:.3em; text-transform:uppercase; padding:.4rem 1.1rem; white-space:nowrap}
+.pack .ico{width:46px; height:46px; margin-bottom:1.2rem}
+.pack h3{font-size:2.2rem; letter-spacing:.01em; line-height:1.1}
+.pack .hand{font-family:var(--script); color:var(--gold); font-size:1.7rem; margin:.1rem 0 1rem; line-height:1.2}
+.pack ul{list-style:none; padding:0; margin:0 0 2rem; flex:1}
+.pack li{position:relative; padding:.62rem 0 .62rem 1.5rem; border-top:1px solid rgba(181,142,79,.22); font-size:.94rem; color:var(--ink-soft)}
+.pack li::before{content:""; position:absolute; left:.1rem; top:1.22rem; width:6px; height:6px; background:var(--gold); transform:rotate(45deg)}
+.pack .btn{align-self:flex-start}
+.note{margin-top:2.6rem; font-size:.9rem; color:var(--ink-soft)}
+@media(max-width:940px){.packs{grid-template-columns:1fr; max-width:520px; margin-inline:auto}.float{animation-duration:9s}}
+
+/* why */
+.why{background:linear-gradient(180deg,rgba(232,220,203,.55),rgba(232,220,203,.2)); overflow:hidden}
+.why-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(2rem,6vw,6rem); align-items:center}
+.pillars{display:grid; gap:1.4rem; margin-top:2.2rem}
+.pillar{display:grid; grid-template-columns:auto 1fr; gap:1rem 1.2rem}
+.pillar svg{width:34px; height:34px; margin-top:.15rem}
+.pillar h3{font-size:1.5rem; line-height:1.15; margin-bottom:.15rem}
+.pillar p{margin:0; font-size:.95rem; color:var(--ink-soft)}
+.illus{position:relative; width:100%; max-width:540px; margin-inline:auto}
+.illus svg{width:100%; height:auto; display:block; overflow:visible}
+.flap-f{transform-box:fill-box; transform-origin:50% 0; animation:flapF 13s ease-in-out infinite}
+.flap-b{transform-box:fill-box; transform-origin:50% 0; animation:flapB 13s ease-in-out infinite}
+.letter{animation:letter 13s ease-in-out infinite}
+@keyframes flapF{0%,8%{transform:scaleY(1)}17%,88%{transform:scaleY(0)}97%,100%{transform:scaleY(1)}}
+@keyframes flapB{0%,17%{transform:scaleY(0);opacity:0}18%{opacity:1;transform:scaleY(0)}28%,80%{transform:scaleY(-1);opacity:1}88%{transform:scaleY(0);opacity:1}89%,100%{transform:scaleY(0);opacity:0}}
+@keyframes letter{0%,28%{transform:translateY(0)}48%,74%{transform:translateY(-128px)}86%,100%{transform:translateY(0)}}
+.stamp{animation:stamp 6.5s ease-in-out infinite; transform-box:fill-box; transform-origin:center}
+@keyframes stamp{0%,55%{transform:translateY(0) rotate(-8deg)}62%{transform:translateY(-14px) rotate(-8deg)}70%,100%{transform:translateY(0) rotate(-8deg)}}
+.pen{stroke-dasharray:420; stroke-dashoffset:420; animation:pen 7s ease-in-out infinite}
+@keyframes pen{0%{stroke-dashoffset:420}45%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:-420}}
+.twinkle{animation:twinkle 4.5s ease-in-out infinite; transform-box:fill-box; transform-origin:center; animation-delay:var(--td,0s)}
+@keyframes twinkle{0%,100%{opacity:.15; transform:scale(.6)}50%{opacity:1; transform:scale(1)}}
+.sheet-a{animation:sway 11s ease-in-out infinite; transform-box:fill-box; transform-origin:50% 100%}
+.sheet-b{animation:sway 13s ease-in-out infinite reverse; transform-box:fill-box; transform-origin:50% 100%}
+@keyframes sway{50%{transform:rotate(1.6deg)}}
+@media(max-width:900px){.why-grid{grid-template-columns:1fr}}
+
+/* portfolio */
+.masonry{columns:3; column-gap:clamp(1rem,2vw,1.8rem); margin-top:3.4rem}
+.tile{display:block; width:100%; margin:0 0 clamp(1rem,2vw,1.8rem); padding:0; border:0; background:none; cursor:pointer; break-inside:avoid; text-align:left; position:relative; font:inherit; color:inherit}
+.tile .inv{transition:transform .7s cubic-bezier(.2,.7,.2,1),box-shadow .7s}
+.tile:hover .inv{transform:translateY(-8px); box-shadow:0 36px 50px -28px rgba(60,45,20,.55)}
+.tile .cap{display:flex; justify-content:space-between; align-items:baseline; padding:.85rem .1rem 0; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-soft)}
+.tile .cap b{font-weight:500; color:var(--ink)}
+.tile .cap span{color:var(--gold-deep)}
+.tile .view{position:absolute; top:14px; right:14px; z-index:3; width:38px; height:38px; border-radius:50%; background:rgba(247,243,236,.9); display:grid; place-items:center; opacity:0; transform:scale(.7); transition:.4s}
+.tile:hover .view,.tile:focus-visible .view{opacity:1; transform:none}
+@media(max-width:980px){.masonry{columns:2}}
+@media(max-width:560px){.masonry{columns:1}}
+
+/* invitation art (sized with container units so it scales in the fullscreen view) */
+.inv{container-type:inline-size; position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0; box-shadow:0 22px 40px -28px rgba(60,45,20,.5); background:var(--b1); color:var(--fg); aspect-ratio:var(--ar,3/4)}
+.inv::after{content:""; position:absolute; inset:0; background-image:var(--noise); opacity:.16; mix-blend-mode:multiply; pointer-events:none}
+.inv .body{display:flex; flex-direction:column; align-items:center; justify-content:center; padding:11cqw 9cqw; width:100%}
+.inv .art{position:absolute; inset:0; width:100%; height:100%}
+.inv .in-frame{position:absolute; inset:4.5cqw; border:1px solid var(--ln); pointer-events:none}
+.inv > *:not(.art):not(.in-frame){position:relative; z-index:1}
+.inv .k{font:500 2.7cqw/1.5 var(--sans); letter-spacing:.34em; text-transform:uppercase; color:var(--ac); margin:0 0 5cqw}
+.inv .t{font-family:var(--script); font-size:15cqw; line-height:1.05; margin:0; color:var(--fg); font-weight:400}
+.inv .t.serif{font-family:var(--serif); font-size:11cqw; font-weight:300; letter-spacing:.03em; line-height:1.05}
+.inv .l{font:italic 300 4.2cqw/1.4 var(--serif); margin:5cqw 0 0; max-width:none; color:var(--fg); opacity:.85}
+.inv .m{font:400 2.6cqw/1.7 var(--sans); letter-spacing:.24em; text-transform:uppercase; margin:5cqw 0 0; color:var(--ac); max-width:none}
+.inv .dot{width:8cqw; height:8cqw; border-radius:50%; margin-top:6cqw; background:radial-gradient(circle at 35% 30%,#E9CE94,#B58E4F 60%,#8A6A35); box-shadow:0 1.2cqw 1.8cqw -.6cqw rgba(60,40,10,.5); display:grid; place-items:center; font:italic 400 4.2cqw var(--serif); color:#F7EBCB}
+.tile .sample,.pv-inv .sample{position:absolute; left:10px; top:10px; z-index:3; font:500 .58rem/1 var(--sans); letter-spacing:.22em; text-transform:uppercase; color:var(--ink-soft); background:rgba(247,243,236,.85); padding:.4rem .55rem}
+
+/* fullscreen preview */
+.pv{position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px)); background:rgba(32,28,24,.94); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px)}
+.pv.open{display:flex; animation:fade .5s both}
+@keyframes fade{from{opacity:0}}
+.pv-box{display:grid; grid-template-columns:minmax(0,auto) minmax(0,420px); gap:clamp(1.5rem,5vw,4.5rem); align-items:center; max-width:1100px; width:100%; max-height:100%; overflow:auto; color:#F1EADB}
+.pv-inv{position:relative; width:min(460px,100%,calc((100vh - 60px)*.74)); margin-inline:auto; animation:pvIn .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes pvIn{from{opacity:0; transform:translateY(40px) scale(.94)}}
+.pv-inv .inv{width:100%; box-shadow:0 50px 90px -30px rgba(0,0,0,.8)}
+.pv-txt h3{font-family:var(--serif); font-size:clamp(2.2rem,4vw,3.2rem); font-weight:300; line-height:1.05; margin:.3rem 0 1rem; color:#FBF3DF}
+.pv-txt .eyebrow{color:var(--gold-lt)}
+.pv-txt p{color:#D6CDBB}
+.pv-txt ul{list-style:none; padding:0; margin:1.2rem 0 2rem}
+.pv-txt li{padding:.55rem 0 .55rem 1.4rem; position:relative; border-top:1px solid rgba(221,191,128,.2); font-size:.94rem; color:#D6CDBB}
+.pv-txt li::before{content:""; position:absolute; left:.05rem; top:1.15rem; width:6px; height:6px; background:var(--gold-lt); transform:rotate(45deg)}
+.pv-actions{display:flex; gap:.9rem; flex-wrap:wrap}
+.pv .btn{color:#F7EFD9; border-color:var(--gold-lt)}
+.pv .btn.solid{background:var(--gold); color:#fff; border-color:var(--gold)}
+.pv-close{position:absolute; top:calc(14px + env(safe-area-inset-top,0px)); right:16px; z-index:2; width:46px; height:46px; border-radius:50%; border:1px solid rgba(221,191,128,.5); background:transparent; color:#F7EFD9; cursor:pointer; font-size:1.4rem; line-height:1}
+.pv-nav{position:absolute; bottom:calc(16px + env(safe-area-inset-bottom,0px)); left:50%; transform:translateX(-50%); display:flex; gap:.6rem; z-index:2}
+.pv-nav button{background:transparent; border:1px solid rgba(221,191,128,.5); color:#F7EFD9; padding:.6rem 1.1rem; cursor:pointer; font:500 .66rem var(--sans); letter-spacing:.24em; text-transform:uppercase}
+@media(max-width:820px){.pv{align-items:flex-start}.pv-box{grid-template-columns:1fr; padding-block:3.4rem 4.6rem; max-height:none}.pv-inv{width:min(360px,100%)}}
+
+/* how it works */
+.how{background:var(--ink); color:#F1EADB; overflow:hidden}
+.how::before{content:""; position:absolute; inset:0; background:radial-gradient(40rem 26rem at 85% 0%,rgba(221,191,128,.16),transparent 60%),radial-gradient(34rem 24rem at 5% 100%,rgba(140,156,132,.16),transparent 60%)}
+.how .wrap{position:relative}
+.how h2{color:#FBF3DF}.how .eyebrow{color:var(--gold-lt)}.how .lede{color:#CFC6B4}
+.tl{position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; margin-top:4.4rem}
+.tl::before{content:""; position:absolute; left:calc(12.5% ); right:calc(12.5%); top:34px; height:1px; background:rgba(221,191,128,.25)}
+.tl::after{content:""; position:absolute; left:calc(12.5%); right:calc(12.5%); top:34px; height:1px; background:linear-gradient(90deg,var(--gold-lt),var(--gold)); transform-origin:left}
+.tl.in::after{animation:draw 3.2s .3s cubic-bezier(.6,.05,.2,1) backwards}
+.step{position:relative; text-align:center}
+.step .n{width:68px; height:68px; margin:0 auto 1.6rem; border-radius:50%; border:1px solid var(--gold); display:grid; place-items:center; background:var(--ink); font:italic 400 1.9rem var(--serif); color:var(--gold-lt); position:relative; z-index:1; transition:background .5s,color .5s,transform .5s}
+.step:hover .n{background:var(--gold); color:var(--ink); transform:scale(1.06)}
+.tl.in .step{animation:rise .9s cubic-bezier(.2,.7,.2,1) backwards}
+.tl.in .step:nth-child(1){animation-delay:.2s}.tl.in .step:nth-child(2){animation-delay:.9s}.tl.in .step:nth-child(3){animation-delay:1.6s}.tl.in .step:nth-child(4){animation-delay:2.3s}
+.step h3{font-size:1.55rem; line-height:1.2; margin-bottom:.6rem; color:#FBF3DF}
+.step p{font-size:.94rem; color:#CFC6B4; margin-inline:auto; max-width:26ch}
+@media(max-width:860px){
+  .tl{grid-template-columns:1fr; gap:2.4rem; padding-left:0}
+  .tl::before,.tl::after{left:33px; right:auto; width:1px; top:34px; bottom:34px; height:auto; background:rgba(221,191,128,.25)}
+  .tl::after{background:linear-gradient(180deg,var(--gold-lt),var(--gold))}
+  .tl.in::after{animation:drawY 3.2s .3s cubic-bezier(.6,.05,.2,1) backwards}
+  @keyframes drawY{from{transform:scaleY(0)}}
+  .tl::after{transform-origin:top}
+  .step{display:grid; grid-template-columns:68px 1fr; gap:0 1.4rem; text-align:left; align-items:start}
+  .step .n{margin:0; grid-row:span 2}
+  .step p{margin:0; max-width:none}
+}
+
+/* testimonials */
+.quotes{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1rem,2.4vw,2rem); margin-top:3.4rem}
+.quote{position:relative; padding:2.4rem 2rem 2rem; background:linear-gradient(180deg,#FCF9F2,#F3ECDD); border:1px solid var(--sand-deep); box-shadow:0 24px 40px -30px rgba(90,70,30,.45); display:flex; flex-direction:column}
+.quote::before{content:""; position:absolute; inset:0; background-image:var(--noise); opacity:.14; mix-blend-mode:multiply; pointer-events:none; animation:paper 40s ease-in-out infinite alternate}
+@keyframes paper{to{background-position:120px 60px}}
+.quote .mark{font-family:var(--serif); font-size:4.4rem; line-height:.5; color:var(--gold); height:1.6rem}
+.quote blockquote{margin:0 0 1.6rem; font-family:var(--serif); font-size:1.4rem; font-weight:400; font-style:italic; line-height:1.4; flex:1}
+.quote .who{font-size:.7rem; letter-spacing:.24em; text-transform:uppercase; color:var(--gold-deep); font-weight:500}
+.quote .ph{display:inline-block; margin-top:.9rem; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); border:1px dashed var(--sand-deep); padding:.3rem .55rem; align-self:flex-start}
+@media(max-width:900px){.quotes{grid-template-columns:1fr; max-width:560px; margin-inline:auto}}
+
+/* contact */
+.contact{background:linear-gradient(180deg,rgba(232,220,203,.2),rgba(232,220,203,.7))}
+.c-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(2rem,6vw,6rem); align-items:start}
+.c-list{list-style:none; padding:0; margin:2rem 0 0}
+.c-list li{display:grid; grid-template-columns:7.2rem 1fr; gap:1rem; padding:.95rem 0; border-top:1px solid var(--hair); align-items:baseline}
+.c-list li:last-child{border-bottom:1px solid var(--hair)}
+.c-list span{font-size:.68rem; letter-spacing:.26em; text-transform:uppercase; color:var(--gold-deep); font-weight:500}
+.c-list a{text-decoration:none; font-family:var(--serif); font-size:1.35rem; font-weight:400; background:linear-gradient(var(--gold),var(--gold)) 0 100%/0 1px no-repeat; transition:background-size .6s; overflow-wrap:anywhere}
+.c-list a:hover{background-size:100% 1px}
+.soc{display:flex; gap:.7rem; margin-top:1.6rem}
+.soc a{width:46px; height:46px; border:1px solid var(--gold); display:grid; place-items:center; transition:.4s}
+.soc a:hover{background:var(--gold); transform:translateY(-3px)}
+.soc a:hover svg{stroke:#fff}
+.soc svg{width:20px; height:20px; stroke:var(--ink); fill:none; stroke-width:1.3; transition:.4s}
+.form{position:relative; padding:clamp(1.6rem,4vw,3rem); background:linear-gradient(180deg,#FDFAF3,#F6EFE1); border:1px solid var(--gold); box-shadow:0 0 0 7px rgba(221,191,128,.14),0 40px 60px -36px rgba(90,70,30,.5)}
+.form::before{content:""; position:absolute; inset:0; background-image:var(--noise); opacity:.12; mix-blend-mode:multiply; pointer-events:none}
+.form h3{font-size:2rem; font-weight:300; margin-bottom:.2rem; position:relative}
+.form .hand{font-family:var(--script); font-size:1.7rem; color:var(--gold); margin:0 0 1.4rem; position:relative; line-height:1.3}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:0 1.6rem; position:relative}
+.f{display:flex; flex-direction:column; margin-bottom:1.3rem; position:relative}
+.f label{font-size:.66rem; letter-spacing:.26em; text-transform:uppercase; color:var(--gold-deep); font-weight:500}
+.f input,.f select,.f textarea{font:400 1.12rem/1.5 var(--serif); color:var(--ink); background:transparent; border:0; border-bottom:1px solid var(--sand-deep); padding:.55rem 0; border-radius:0; outline:0; width:100%; transition:border-color .4s}
+.f textarea{resize:vertical; min-height:96px}
+.f input:focus,.f select:focus,.f textarea:focus{border-bottom-color:var(--gold); box-shadow:0 1px 0 var(--gold)}
+.f select{appearance:none; -webkit-appearance:none; background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%); background-position:calc(100% - 12px) 55%,calc(100% - 6px) 55%; background-size:6px 6px; background-repeat:no-repeat}
+.f .err{display:none; font-size:.8rem; color:#9A4A3A; margin-top:.3rem}
+.f.bad .err{display:block}
+.f.bad input,.f.bad textarea{border-bottom-color:#9A4A3A}
+.sent{position:relative; display:none}
+.sent.show{display:block; animation:rise .8s both}
+.sent pre{white-space:pre-wrap; font:400 .95rem/1.7 var(--sans); background:rgba(232,220,203,.4); padding:1rem 1.2rem; margin:1rem 0 1.4rem; border-left:2px solid var(--gold); overflow-wrap:anywhere}
+.sent .actions{display:flex; gap:.8rem; flex-wrap:wrap}
+@media(max-width:900px){.c-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.row{grid-template-columns:1fr}.c-list li{grid-template-columns:1fr; gap:.1rem}}
+
+footer{padding-block:3.4rem calc(3rem + env(safe-area-inset-bottom,0px)); text-align:center; border-top:1px solid var(--hair)}
+footer .fstamp{display:block; margin:0 auto 1.2rem; opacity:.9}
+footer .brand{display:inline-block; margin-bottom:.6rem}
+footer p{margin:0 auto .3rem; font-size:.82rem; color:var(--ink-soft)}
+footer .script{font-family:var(--script); font-size:1.9rem; color:var(--gold); margin-bottom:.4rem}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important; transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top" data-go>THE GRAMMA</a>
+    <ul>
+      <li><a href="#experiences" data-go>Experiences</a></li>
+      <li><a href="#why" data-go>Our craft</a></li>
+      <li><a href="#portfolio" data-go>Portfolio</a></li>
+      <li><a href="#how" data-go>Process</a></li>
+      <li><a href="#kind-words" data-go>Kind words</a></li>
+    </ul>
+    <a class="btn sm magnetic" href="#contact" data-go>Inquire</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="words" id="words" aria-hidden="true"></div>
+  <canvas id="sparkles" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <svg class="seal" viewBox="0 0 400 400" role="img" aria-label="The Gramma wax seal">
+      <defs>
+        <radialGradient id="wax" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#E2C285"/><stop offset=".5" stop-color="#BC9047"/><stop offset="1" stop-color="#92662A"/></radialGradient>
+        <radialGradient id="disc" cx="40%" cy="32%" r="75%"><stop offset="0" stop-color="#F6E7C3"/><stop offset="1" stop-color="#D5B473"/></radialGradient>
+        <filter id="emb" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="-1.2" dy="-1.2" stdDeviation=".6" flood-color="#fff" flood-opacity=".7"/><feDropShadow dx="1.4" dy="1.6" stdDeviation="1" flood-color="#6B4E1F" flood-opacity=".55"/></filter>
+        <filter id="blur"><feGaussianBlur stdDeviation="7"/></filter>
+        <path id="ring" d="M200,200 m-116,0 a116,116 0 1,1 232,0 a116,116 0 1,1 -232,0"/>
+      </defs>
+      <g class="spin">
+        <path id="scallop" fill="url(#wax)" d=""/>
+        <text font-family="Jost,Arial,sans-serif" font-weight="500" font-size="14.5" fill="#6E4C1B" filter="url(#emb)" letter-spacing="3"><textPath href="#ring" textLength="720" lengthAdjust="spacing">THE GRAMMA · EVERY OCCASION DESERVES A LETTER · </textPath></text>
+      </g>
+      <circle cx="200" cy="200" r="140" fill="none" stroke="#7A5420" stroke-opacity=".35" stroke-width="1.4"/>
+      <circle cx="200" cy="200" r="134" fill="none" stroke="#FFF3D6" stroke-opacity=".55" stroke-width="1.6"/>
+      <circle cx="200" cy="200" r="94" fill="none" stroke="#FFF3D6" stroke-opacity=".5" stroke-width="1.6"/>
+      <circle cx="200" cy="200" r="88" fill="none" stroke="#7A5420" stroke-opacity=".3" stroke-width="1.2"/>
+      <text x="196" y="247" text-anchor="middle" font-family="'Noto Serif',Georgia,serif" font-style="italic" font-weight="400" font-size="132" fill="#FBF3DF" filter="url(#emb)">Γ</text>
+      <ellipse cx="140" cy="106" rx="62" ry="24" transform="rotate(-32 140 106)" fill="#fff" opacity=".34" filter="url(#blur)"/>
+    </svg>
+    <h1 id="h1"><span class="uline" id="h1u">THE GRAMMA</span></h1>
+    <p class="sub">Every occasion deserves a <b>letter.</b></p>
+    <a class="btn solid magnetic" href="#experiences" data-go>Explore</a>
+  </div>
+</header>
+
+<main>
+<!-- EXPERIENCES -->
+<section class="sec" id="experiences">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Our Experiences</p>
+      <h2>Choose the letter that <em>tells</em> your story.</h2>
+      <p class="lede">Every celebration is designed by hand and made for one host. Three ways to begin, each shaped around your names, your date and your words.</p>
+    </div>
+    <div class="packs">
+      <div class="float reveal" style="--fd:0s;--d:.05s">
+        <article class="pack">
+          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#B58E4F" stroke-width="1.2"><rect x="6" y="12" width="36" height="24"/><path d="M6 12l18 14 18-14"/></svg>
+          <h3>The Letter</h3>
+          <p class="hand">a single, perfect page</p>
+          <ul>
+            <li>One bespoke digital invitation</li>
+            <li>Your palette, wording and monogram</li>
+            <li>Event details and a map link</li>
+            <li>RSVP by message or email</li>
+            <li>A private link, ready to send</li>
+          </ul>
+          <a class="btn sm magnetic" href="#contact" data-pack="The Letter" data-go>Inquire</a>
+        </article>
+      </div>
+      <div class="float reveal" style="--fd:-2.4s;--d:.2s">
+        <article class="pack feat">
+          <span class="tag">Featured</span>
+          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#8A6A35" stroke-width="1.2"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="10"/><path d="M24 14v20M14 24h20" stroke-opacity=".5"/></svg>
+          <h3>The Signature</h3>
+          <p class="hand">the invitation and the day around it</p>
+          <ul>
+            <li>Everything in The Letter</li>
+            <li>Animated envelope and wax-seal opening</li>
+            <li>Schedule, venue details and travel notes</li>
+            <li>Guest RSVP with dietary notes</li>
+            <li>Your story, gallery and music</li>
+          </ul>
+          <a class="btn solid sm magnetic" href="#contact" data-pack="The Signature" data-go>Inquire</a>
+        </article>
+      </div>
+      <div class="float reveal" style="--fd:-4.6s;--d:.35s">
+        <article class="pack">
+          <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="#B58E4F" stroke-width="1.2"><path d="M8 40V20l16-12 16 12v20z"/><path d="M19 40V27h10v13"/></svg>
+          <h3>The Heirloom</h3>
+          <p class="hand">a keepsake to return to</p>
+          <ul>
+            <li>Everything in The Signature</li>
+            <li>A complete multi-page event website</li>
+            <li>Bilingual pages on request</li>
+            <li>Guestbook for messages and photos</li>
+            <li>A keepsake edition kept after the day</li>
+          </ul>
+          <a class="btn sm magnetic" href="#contact" data-pack="The Heirloom" data-go>Inquire</a>
+        </article>
+      </div>
+    </div>
+    <p class="note center reveal">Every experience is quoted after a conversation, because no two celebrations are alike.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec why" id="why">
+  <div class="wrap why-grid">
+    <div class="reveal">
+      <p class="eyebrow">Why The Gramma</p>
+      <h2>Handcrafted. <span class="uline">Completely</span> yours.</h2>
+      <p class="lede">A γράμμα is a personal letter, written for one person. That is how we work. We do not fill in templates. We begin with a blank page, your story and a pen.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <svg viewBox="0 0 34 34" fill="none" stroke="#B58E4F" stroke-width="1.2"><path d="M6 28c4-2 6-6 8-11s6-9 14-11c-1 8-5 12-10 14s-9 3-12 8z"/><path d="M6 28L18 16"/></svg>
+          <div><h3>Drawn, not downloaded</h3><p>Every invitation is illustrated, lettered and animated for a single celebration. There is no shelf of designs to choose from.</p></div>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 34 34" fill="none" stroke="#B58E4F" stroke-width="1.2"><circle cx="17" cy="17" r="11"/><path d="M17 10v7l5 3"/></svg>
+          <div><h3>Personal to the last detail</h3><p>Your names, your palette, your language, your favourite line of a song. We ask questions until it sounds like you.</p></div>
+        </div>
+        <div class="pillar">
+          <svg viewBox="0 0 34 34" fill="none" stroke="#B58E4F" stroke-width="1.2"><rect x="4" y="9" width="26" height="17"/><path d="M4 9l13 10L30 9"/></svg>
+          <div><h3>Opened, never scrolled past</h3><p>Guests break a wax seal and unfold a letter. The first look sets the tone for the whole celebration.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="illus reveal" style="--d:.2s" aria-hidden="true">
+      <svg viewBox="0 0 520 520">
+        <defs>
+          <linearGradient id="pap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFDF7"/><stop offset="1" stop-color="#F4EBD8"/></linearGradient>
+          <linearGradient id="env" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBDDBF"/><stop offset="1" stop-color="#D9C39B"/></linearGradient>
+          <linearGradient id="envb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDB68B"/><stop offset="1" stop-color="#BFA576"/></linearGradient>
+          <radialGradient id="wax2" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#EDD39C"/><stop offset=".5" stop-color="#C79F58"/><stop offset="1" stop-color="#8F6E30"/></radialGradient>
+          <clipPath id="clipEnv"><rect x="0" y="0" width="520" height="430"/></clipPath>
+          <filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#5A4520" flood-opacity=".28"/></filter>
+          <symbol id="star" viewBox="-10 -10 20 20"><path d="M0-10 L2.2-2.2 L10 0 L2.2 2.2 L0 10 L-2.2 2.2 L-10 0 L-2.2-2.2Z" fill="#C9A05C"/></symbol>
+        </defs>
+        <circle cx="260" cy="270" r="228" fill="#E8DCCB" opacity=".75"/>
+        <circle cx="260" cy="270" r="228" fill="none" stroke="#B58E4F" stroke-opacity=".4" stroke-dasharray="2 7"/>
+        <!-- paper sheets -->
+        <g class="sheet-b"><rect x="60" y="78" width="170" height="220" fill="url(#pap)" transform="rotate(-9 145 188)" filter="url(#sh)"/>
+          <g transform="rotate(-9 145 188)" stroke="#B58E4F" stroke-opacity=".5" stroke-width="1.1"><path d="M84 118h100M84 138h122M84 158h90M84 178h112M84 198h70"/></g></g>
+        <g class="sheet-a"><rect x="300" y="60" width="150" height="200" fill="url(#pap)" transform="rotate(7 375 160)" filter="url(#sh)"/>
+          <g transform="rotate(7 375 160)"><circle cx="375" cy="118" r="18" fill="none" stroke="#B58E4F"/><text x="375" y="127" text-anchor="middle" font-family="'Noto Serif',serif" font-style="italic" font-size="26" fill="#B58E4F">Γ</text><path d="M330 168h90M340 186h70M335 204h80" stroke="#B58E4F" stroke-opacity=".5"/></g></g>
+        <!-- envelope -->
+        <g filter="url(#sh)"><rect x="110" y="250" width="300" height="180" fill="url(#envb)"/></g>
+        <g class="flap-b"><path d="M110 250L410 250L260 350Z" fill="url(#env)"/><path d="M110 250L410 250L260 350Z" fill="none" stroke="#B58E4F" stroke-opacity=".35"/></g>
+        <g clip-path="url(#clipEnv)"><g class="letter">
+          <rect x="138" y="300" width="244" height="200" fill="url(#pap)" stroke="#D9C39B"/>
+          <circle cx="260" cy="342" r="19" fill="none" stroke="#B58E4F"/>
+          <text x="260" y="351" text-anchor="middle" font-family="'Noto Serif',serif" font-style="italic" font-size="27" fill="#B58E4F">Γ</text>
+          <text x="260" y="392" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="27" fill="#2A2724">You are invited</text>
+          <path d="M184 412h152M204 428h112" stroke="#B58E4F" stroke-opacity=".55"/>
+        </g></g>
+        <path d="M110 430L110 250L260 350L410 250L410 430Z" fill="url(#env)"/>
+        <path d="M110 430L260 335L410 430" fill="none" stroke="#B58E4F" stroke-opacity=".3"/>
+        <path d="M110 250L260 350L410 250" fill="none" stroke="#B58E4F" stroke-opacity=".3"/>
+        <g class="flap-f"><path d="M110 250L410 250L260 350Z" fill="url(#env)" stroke="#B58E4F" stroke-opacity=".35"/>
+          <circle cx="260" cy="336" r="21" fill="url(#wax2)"/><circle cx="260" cy="336" r="14" fill="none" stroke="#7A5B26" stroke-opacity=".5"/><text x="260" y="344" text-anchor="middle" font-family="'Noto Serif',serif" font-style="italic" font-size="20" fill="#7A5B26" fill-opacity=".8">Γ</text></g>
+        <!-- floating seal being pressed -->
+        <g class="stamp"><g transform="translate(446 444)"><circle r="30" fill="url(#wax2)" filter="url(#sh)"/><circle r="21" fill="none" stroke="#7A5B26" stroke-opacity=".55"/><text y="9" text-anchor="middle" font-family="'Noto Serif',serif" font-style="italic" font-size="27" fill="#6E5122" fill-opacity=".85">Γ</text></g></g>
+        <!-- pen flourish -->
+        <path class="pen" d="M70 470c40-30 70 20 110-6s52-22 88-4 58 8 84-10" fill="none" stroke="#B58E4F" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- sparkles -->
+        <use href="#star" x="86" y="60" width="16" height="16" class="twinkle" style="--td:.2s"/>
+        <use href="#star" x="462" y="248" width="12" height="12" class="twinkle" style="--td:1.6s"/>
+        <use href="#star" x="56" y="330" width="10" height="10" class="twinkle" style="--td:2.7s"/>
+        <use href="#star" x="240" y="30" width="12" height="12" class="twinkle" style="--td:3.4s"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="sec" id="portfolio">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Portfolio</p>
+      <h2>Six occasions, six <em>voices.</em></h2>
+      <p class="lede">A glimpse of the styles we design. Open any one to see it full screen. These are sample concepts made to show our approach, not real client invitations.</p>
+    </div>
+    <div class="masonry" id="masonry"></div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="sec how" id="how">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">How It Works</p>
+      <h2>From first hello to <em>final</em> seal.</h2>
+      <p class="lede">Four calm steps. You bring the story, we handle everything else.</p>
+    </div>
+    <div class="tl reveal" id="tl">
+      <div class="step"><div class="n">1</div><h3>Choose your experience</h3><p>The Letter, The Signature or The Heirloom. Not sure yet? We will help you decide.</p></div>
+      <div class="step"><div class="n">2</div><h3>Share your details</h3><p>Names, date, place, story, colours and favourite words, by short form or by conversation.</p></div>
+      <div class="step"><div class="n">3</div><h3>We design your invitation</h3><p>Drawn, lettered and animated for your celebration. You see a private preview and we refine it together.</p></div>
+      <div class="step"><div class="n">4</div><h3>Receive your personalized digital experience</h3><p>One private link, ready to send to every guest, opening like a letter on their phone.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec" id="kind-words">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">Kind Words</p>
+      <h2>Letters back <span class="uline">to us.</span></h2>
+    </div>
+    <div class="quotes">
+      <figure class="quote reveal" style="margin:0;--d:.05s"><div class="mark">“</div><blockquote>Our guests opened the invitation and went quiet for a moment. Then the messages started.</blockquote><figcaption class="who">Client name · Wedding</figcaption><span class="ph">Placeholder · add a real testimonial</span></figure>
+      <figure class="quote reveal" style="margin:0;--d:.2s"><div class="mark">“</div><blockquote>It felt like receiving a handwritten letter, and it fit in my pocket.</blockquote><figcaption class="who">Client name · Baptism</figcaption><span class="ph">Placeholder · add a real testimonial</span></figure>
+      <figure class="quote reveal" style="margin:0;--d:.35s"><div class="mark">“</div><blockquote>Every detail was ours: the colours, the wording, even the music. Nothing about it looked like a template.</blockquote><figcaption class="who">Client name · Birthday</figcaption><span class="ph">Placeholder · add a real testimonial</span></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact" id="contact">
+  <div class="wrap c-grid">
+    <div class="reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Write us a <em>letter.</em></h2>
+      <p class="lede">Tell us about your celebration. We answer every message personally.</p>
+      <ul class="c-list">
+        <li><span>Email</span><a href="mailto:thegrammastudio@gmail.com">thegrammastudio@gmail.com</a></li>
+        <li><span>Phone</span><a href="tel:+306978807727">+30 697 880 7727</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/thegrammastudio/" target="_blank" rel="noopener">@thegrammastudio</a></li>
+        <li><span>Website</span><a href="https://thegramma.com/" target="_blank" rel="noopener">thegramma.com</a></li>
+      </ul>
+      <div class="soc">
+        <a href="https://www.instagram.com/thegrammastudio/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></svg></a>
+        <a href="mailto:thegrammastudio@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 6l9 7 9-7"/></svg></a>
+        <a href="tel:+306978807727" aria-label="Phone"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+        <a href="https://thegramma.com/" target="_blank" rel="noopener" aria-label="Website"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></a>
+      </div>
+    </div>
+
+    <div class="form reveal" style="--d:.15s">
+      <form id="form" novalidate>
+        <h3>Your letter to The Gramma</h3>
+        <p class="hand">we would love to hear from you</p>
+        <div class="row">
+          <div class="f" id="f-name"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" placeholder="Maria &amp; Yiannis"><span class="err">Please tell us your name.</span></div>
+          <div class="f" id="f-email"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com"><span class="err">Please enter a valid email so we can reply.</span></div>
+        </div>
+        <div class="row">
+          <div class="f"><label for="event">Occasion</label>
+            <select id="event"><option>Wedding</option><option>Baptism</option><option>Birthday</option><option>Baby Shower</option><option>Gender Reveal</option><option>Engagement</option><option>Anniversary</option><option>Graduation</option><option>Corporate Event</option><option>Other celebration</option></select></div>
+          <div class="f"><label for="pack">Experience</label>
+            <select id="pack"><option>Not sure yet</option><option>The Letter</option><option>The Signature</option><option>The Heirloom</option></select></div>
+        </div>
+        <div class="f"><label for="date">Date of your celebration</label><input id="date" name="date" placeholder="e.g. 14 June 2027, or still deciding"></div>
+        <div class="f" id="f-msg"><label for="msg">Tell us your story</label><textarea id="msg" name="msg" placeholder="Names, place, the mood you imagine…"></textarea><span class="err">A few words about your celebration will help us reply well.</span></div>
+        <button class="btn solid magnetic" type="submit">Prepare my letter</button>
+      </form>
+      <div class="sent" id="sent" aria-live="polite">
+        <h3>Your letter is ready</h3>
+        <p class="hand">one last step</p>
+        <p>Send it from your email app, or copy it and send it wherever you like. It goes to <b>thegrammastudio@gmail.com</b>.</p>
+        <pre id="sentText"></pre>
+        <div class="actions">
+          <a class="btn solid sm" id="mailBtn" href="#" target="_top" rel="noopener">Open in email app</a>
+          <button class="btn sm" type="button" id="copyBtn">Copy message</button>
+          <button class="btn sm" type="button" id="editBtn">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img class="fstamp" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiIHdpZHRoPSIxMDI0IiBoZWlnaHQ9IjEwMjQiPjxkZWZzPjwvZGVmcz48cGF0aCBkPSJNOTkwLjggNTEyLjBMOTkyLjEgNTE2LjJMOTkzLjMgNTIwLjRMOTk0LjQgNTI0LjZMOTk1LjMgNTI4LjlMOTk2LjEgNTMzLjFMOTk2LjcgNTM3LjRMOTk3LjIgNTQxLjdMOTk3LjUgNTQ1LjlMOTk3LjYgNTUwLjJMOTk3LjUgNTU0LjVMOTk3LjIgNTU4LjdMOTk2LjcgNTYyLjlMOTk2LjAgNTY3LjFMOTk1LjIgNTcxLjNMOTk0LjEgNTc1LjVMOTkyLjkgNTc5LjZMOTkxLjUgNTgzLjdMOTkwLjAgNTg3LjdMOTg4LjMgNTkxLjdMOTg2LjUgNTk1LjdMOTg0LjYgNTk5LjZMOTgyLjYgNjAzLjVMOTgwLjUgNjA3LjNMOTc4LjQgNjExLjFMOTc2LjMgNjE0LjlMOTc0LjEgNjE4LjdMOTcxLjkgNjIyLjRMOTY5LjggNjI2LjFMOTY3LjYgNjI5LjhMOTY1LjUgNjMzLjVMOTYzLjQgNjM3LjJMOTYxLjQgNjQwLjlMOTU5LjQgNjQ0LjVMOTU3LjUgNjQ4LjJMOTU1LjYgNjUxLjlMOTUzLjggNjU1LjZMOTUyLjEgNjU5LjJMOTUwLjQgNjYyLjlMOTQ4LjcgNjY2LjdMOTQ3LjEgNjcwLjRMOTQ1LjUgNjc0LjFMOTQ0LjAgNjc3LjhMOTQyLjQgNjgxLjZMOTQwLjkgNjg1LjNMOTM5LjMgNjg5LjBMOTM3LjggNjkyLjdMOTM2LjIgNjk2LjRMOTM0LjYgNzAwLjFMOTMyLjkgNzAzLjhMOTMxLjIgNzA3LjVMOTI5LjUgNzExLjFMOTI3LjcgNzE0LjdMOTI1LjggNzE4LjNMOTIzLjkgNzIxLjlMOTIyLjAgNzI1LjRMOTIwLjAgNzI4LjlMOTE3LjkgNzMyLjRMOTE1LjggNzM1LjhMOTEzLjcgNzM5LjNMOTExLjUgNzQyLjdMOTA5LjQgNzQ2LjFMOTA3LjIgNzQ5LjVMOTA1LjAgNzUyLjhMOTAyLjggNzU2LjJMOTAwLjcgNzU5LjZMODk4LjUgNzYzLjBMODk2LjQgNzY2LjRMODk0LjMgNzY5LjlMODkyLjMgNzczLjRMODkwLjMgNzc2LjlMODg4LjMgNzgwLjRMODg2LjQgNzg0LjBMODg0LjUgNzg3LjdMODgyLjcgNzkxLjNMODgwLjkgNzk1LjBMODc5LjEgNzk4LjhMODc3LjMgODAyLjZMODc1LjYgODA2LjRMODczLjkgODEwLjNMODcyLjEgODE0LjJMODcwLjMgODE4LjFMODY4LjUgODIxLjlMODY2LjcgODI1LjhMODY0LjggODI5LjdMODYyLjkgODMzLjVMODYwLjggODM3LjNMODU4LjcgODQxLjBMODU2LjUgODQ0LjZMODU0LjEgODQ4LjJMODUxLjcgODUxLjdMODQ5LjEgODU1LjFMODQ2LjQgODU4LjNMODQzLjYgODYxLjRMODQwLjcgODY0LjVMODM3LjYgODY3LjNMODM0LjQgODcwLjFMODMxLjEgODcyLjdMODI3LjcgODc1LjFMODI0LjEgODc3LjRMODIwLjUgODc5LjZMODE2LjcgODgxLjdMODEyLjkgODgzLjZMODA5LjEgODg1LjVMODA1LjEgODg3LjJMODAxLjEgODg4LjhMNzk3LjEgODkwLjRMNzkzLjEgODkxLjlMNzg5LjEgODkzLjNMNzg1LjAgODk0LjhMNzgxLjAgODk2LjJMNzc3LjAgODk3LjVMNzczLjAgODk4LjlMNzY5LjAgOTAwLjRMNzY1LjEgOTAxLjhMNzYxLjMgOTAzLjNMNzU3LjUgOTA0LjhMNzUzLjcgOTA2LjRMNzUwLjAgOTA4LjFMNzQ2LjMgOTA5LjhMNzQyLjcgOTExLjVMNzM5LjEgOTEzLjRMNzM1LjYgOTE1LjNMNzMyLjAgOTE3LjNMNzI4LjYgOTE5LjNMNzI1LjEgOTIxLjRMNzIxLjcgOTIzLjVMNzE4LjIgOTI1LjZMNzE0LjggOTI3LjhMNzExLjQgOTMwLjBMNzA3LjkgOTMyLjFMNzA0LjQgOTM0LjNMNzAxLjAgOTM2LjRMNjk3LjUgOTM4LjZMNjkzLjkgOTQwLjZMNjkwLjQgOTQyLjdMNjg2LjggOTQ0LjZMNjgzLjIgOTQ2LjZMNjc5LjUgOTQ4LjRMNjc1LjggOTUwLjJMNjcyLjEgOTUxLjlMNjY4LjQgOTUzLjZMNjY0LjYgOTU1LjJMNjYwLjggOTU2LjdMNjU3LjAgOTU4LjFMNjUzLjEgOTU5LjZMNjQ5LjMgOTYwLjlMNjQ1LjQgOTYyLjNMNjQxLjUgOTYzLjZMNjM3LjYgOTY0LjhMNjMzLjcgOTY2LjFMNjI5LjggOTY3LjRMNjI1LjkgOTY4LjZMNjIxLjkgOTY5LjlMNjE4LjAgOTcxLjJMNjE0LjEgOTcyLjVMNjEwLjIgOTczLjhMNjA2LjIgOTc1LjJMNjAyLjMgOTc2LjZMNTk4LjQgOTc4LjBMNTk0LjQgOTc5LjRMNTkwLjUgOTgwLjhMNTg2LjUgOTgyLjNMNTgyLjUgOTgzLjdMNTc4LjUgOTg1LjFMNTc0LjUgOTg2LjVMNTcwLjQgOTg3LjlMNTY2LjQgOTg5LjJMNTYyLjMgOTkwLjVMNTU4LjIgOTkxLjZMNTU0LjEgOTkyLjdMNTQ5LjkgOTkzLjdMNTQ1LjcgOTk0LjVMNTQxLjYgOTk1LjJMNTM3LjQgOTk1LjhMNTMzLjEgOTk2LjJMNTI4LjkgOTk2LjRMNTI0LjcgOTk2LjRMNTIwLjUgOTk2LjNMNTE2LjIgOTk2LjBMNTEyLjAgOTk1LjVMNTA3LjggOTk0LjhMNTAzLjYgOTk0LjBMNDk5LjQgOTkyLjlMNDk1LjIgOTkxLjdMNDkxLjEgOTkwLjRMNDg3LjAgOTg4LjlMNDgyLjkgOTg3LjNMNDc4LjkgOTg1LjZMNDc0LjkgOTgzLjhMNDcwLjkgOTgyLjBMNDY2LjkgOTgwLjBMNDYzLjAgOTc4LjFMNDU5LjEgOTc2LjFMNDU1LjMgOTc0LjJMNDUxLjQgOTcyLjJMNDQ3LjYgOTcwLjNMNDQzLjggOTY4LjVMNDQwLjAgOTY2LjdMNDM2LjIgOTY1LjBMNDMyLjQgOTYzLjRMNDI4LjYgOTYxLjhMNDI0LjggOTYwLjRMNDIxLjAgOTU5LjFMNDE3LjIgOTU3LjlMNDEzLjQgOTU2LjhMNDA5LjUgOTU1LjhMNDA1LjcgOTU0LjhMNDAxLjggOTU0LjBMMzk3LjkgOTUzLjNMMzk0LjAgOTUyLjZMMzkwLjAgOTUxLjlMMzg2LjAgOTUxLjNMMzgyLjAgOTUwLjdMMzc4LjAgOTUwLjJMMzc0LjAgOTQ5LjZMMzcwLjAgOTQ5LjBMMzY2LjAgOTQ4LjRMMzYxLjkgOTQ3LjhMMzU3LjkgOTQ3LjFMMzUzLjkgOTQ2LjRMMzQ5LjkgOTQ1LjZMMzQ1LjkgOTQ0LjdMMzQxLjkgOTQzLjhMMzM4LjAgOTQyLjhMMzM0LjAgOTQxLjdMMzMwLjEgOTQwLjVMMzI2LjIgOTM5LjNMMzIyLjMgOTM4LjBMMzE4LjUgOTM2LjZMMzE0LjcgOTM1LjJMMzEwLjkgOTMzLjdMMzA3LjEgOTMyLjJMMzAzLjMgOTMwLjZMMjk5LjUgOTI5LjBMMjk1LjggOTI3LjNMMjkyLjAgOTI1LjdMMjg4LjMgOTI0LjBMMjg0LjUgOTIyLjRMMjgwLjggOTIwLjdMMjc3LjAgOTE5LjFMMjczLjIgOTE3LjRMMjY5LjQgOTE1LjhMMjY1LjYgOTE0LjFMMjYxLjcgOTEyLjVMMjU3LjkgOTEwLjlMMjU0LjAgOTA5LjJMMjUwLjIgOTA3LjZMMjQ2LjMgOTA1LjlMMjQyLjQgOTA0LjJMMjM4LjYgOTAyLjVMMjM0LjcgOTAwLjdMMjMwLjkgODk4LjlMMjI3LjEgODk3LjBMMjIzLjQgODk1LjBMMjE5LjcgODkzLjBMMjE2LjAgODkwLjhMMjEyLjQgODg4LjZMMjA4LjkgODg2LjJMMjA1LjUgODgzLjhMMjAyLjIgODgxLjJMMTk5LjAgODc4LjVMMTk1LjkgODc1LjZMMTkyLjkgODcyLjdMMTkwLjAgODY5LjZMMTg3LjMgODY2LjRMMTg0LjYgODYzLjFMMTgyLjEgODU5LjdMMTc5LjcgODU2LjFMMTc3LjQgODUyLjVMMTc1LjIgODQ4LjhMMTczLjEgODQ1LjFMMTcxLjAgODQxLjNMMTY5LjEgODM3LjRMMTY3LjIgODMzLjVMMTY1LjQgODI5LjZMMTYzLjYgODI1LjdMMTYxLjggODIxLjhMMTYwLjEgODE3LjlMMTU4LjMgODE0LjFMMTU2LjUgODEwLjNMMTU0LjcgODA2LjVMMTUyLjkgODAyLjhMMTUxLjAgNzk5LjJMMTQ5LjAgNzk1LjZMMTQ3LjAgNzkyLjFMMTQ0LjkgNzg4LjdMMTQyLjcgNzg1LjNMMTQwLjQgNzgyLjBMMTM4LjAgNzc4LjdMMTM1LjYgNzc1LjZMMTMzLjEgNzcyLjRMMTMwLjUgNzY5LjNMMTI3LjggNzY2LjNMMTI1LjEgNzYzLjNMMTIyLjMgNzYwLjNMMTE5LjUgNzU3LjNMMTE2LjYgNzU0LjNMMTEzLjcgNzUxLjNMMTEwLjggNzQ4LjNMMTA4LjAgNzQ1LjNMMTA1LjEgNzQyLjJMMTAyLjMgNzM5LjFMOTkuNSA3MzYuMEw5Ni44IDczMi44TDk0LjIgNzI5LjVMOTEuNiA3MjYuMkw4OS4xIDcyMi44TDg2LjcgNzE5LjRMODQuNCA3MTYuMEw4Mi4yIDcxMi40TDgwLjEgNzA4LjhMNzguMSA3MDUuMkw3Ni4yIDcwMS41TDc0LjMgNjk3LjhMNzIuNiA2OTQuMEw3MC45IDY5MC4yTDY5LjMgNjg2LjRMNjcuOCA2ODIuNUw2Ni4zIDY3OC42TDY0LjkgNjc0LjdMNjMuNiA2NzAuOEw2Mi4yIDY2Ni45TDYwLjkgNjYyLjlMNTkuNiA2NTkuMEw1OC4zIDY1NS4wTDU3LjEgNjUxLjFMNTUuOCA2NDcuMUw1NC41IDY0My4yTDUzLjMgNjM5LjJMNTIuMCA2MzUuMkw1MC44IDYzMS4zTDQ5LjYgNjI3LjNMNDguNCA2MjMuM0w0Ny4yIDYxOS4zTDQ2LjEgNjE1LjNMNDUuMCA2MTEuM0w0My45IDYwNy4yTDQzLjAgNjAzLjJMNDIuMSA1OTkuMUw0MS4zIDU5NS4wTDQwLjYgNTkwLjlMNDAuMCA1ODYuOEwzOS42IDU4Mi42TDM5LjIgNTc4LjRMMzkuMCA1NzQuM0wzOS4wIDU3MC4xTDM5LjAgNTY1LjlMMzkuMyA1NjEuN0wzOS42IDU1Ny41TDQwLjEgNTUzLjNMNDAuOCA1NDkuMUw0MS41IDU0NC45TDQyLjQgNTQwLjdMNDMuNCA1MzYuNkw0NC41IDUzMi40TDQ1LjcgNTI4LjNMNDYuOSA1MjQuMkw0OC4yIDUyMC4xTDQ5LjUgNTE2LjBMNTAuOCA1MTIuMEw1Mi4xIDUwOC4wTDUzLjQgNTA0LjBMNTQuNyA1MDAuMEw1NS45IDQ5Ni4xTDU3LjAgNDkyLjFMNTguMCA0ODguMkw1OC45IDQ4NC4zTDU5LjggNDgwLjRMNjAuNSA0NzYuNUw2MS4xIDQ3Mi41TDYxLjUgNDY4LjZMNjEuOSA0NjQuN0w2Mi4xIDQ2MC43TDYyLjIgNDU2LjhMNjIuMiA0NTIuOEw2Mi4wIDQ0OC44TDYxLjggNDQ0LjdMNjEuNSA0NDAuN0w2MS4yIDQzNi42TDYwLjggNDMyLjRMNjAuMyA0MjguM0w1OS45IDQyNC4xTDU5LjQgNDE5LjlMNTkuMCA0MTUuN0w1OC42IDQxMS41TDU4LjIgNDA3LjJMNTcuOSA0MDMuMEw1Ny43IDM5OC43TDU3LjUgMzk0LjVMNTcuNSAzOTAuMkw1Ny42IDM4Ni4wTDU3LjggMzgxLjhMNTguMSAzNzcuNkw1OC42IDM3My40TDU5LjEgMzY5LjJMNTkuOCAzNjUuMUw2MC43IDM2MS4wTDYxLjYgMzU2LjlMNjIuNyAzNTIuOUw2My44IDM0OC45TDY1LjEgMzQ0LjlMNjYuNCAzNDEuMEw2Ny44IDMzNy4wTDY5LjMgMzMzLjJMNzAuOSAzMjkuM0w3Mi41IDMyNS40TDc0LjEgMzIxLjZMNzUuOCAzMTcuOEw3Ny41IDMxNC4wTDc5LjMgMzEwLjJMODEuMCAzMDYuNEw4Mi44IDMwMi43TDg0LjYgMjk4LjlMODYuNCAyOTUuMUw4OC4yIDI5MS40TDkwLjAgMjg3LjZMOTEuOCAyODMuOUw5My43IDI4MC4xTDk1LjYgMjc2LjRMOTcuNSAyNzIuN0w5OS41IDI2OS4wTDEwMS41IDI2NS4zTDEwMy41IDI2MS43TDEwNS43IDI1OC4xTDEwNy45IDI1NC42TDExMC4yIDI1MS4xTDExMi42IDI0Ny42TDExNS4wIDI0NC4yTDExNy42IDI0MC45TDEyMC4zIDIzNy43TDEyMy4xIDIzNC42TDEyNS45IDIzMS41TDEyOC45IDIyOC41TDEzMi4wIDIyNS42TDEzNS4xIDIyMi44TDEzOC40IDIyMC4xTDE0MS43IDIxNy40TDE0NS4xIDIxNC45TDE0OC41IDIxMi40TDE1Mi4wIDIwOS45TDE1NS42IDIwNy42TDE1OS4xIDIwNS4yTDE2Mi43IDIwMy4wTDE2Ni4zIDIwMC43TDE2OS44IDE5OC40TDE3My4zIDE5Ni4yTDE3Ni44IDE5My45TDE4MC4zIDE5MS43TDE4My43IDE4OS40TDE4Ny4wIDE4Ny4wTDE5MC4zIDE4NC42TDE5My41IDE4Mi4xTDE5Ni42IDE3OS42TDE5OS42IDE3Ny4wTDIwMi41IDE3NC4zTDIwNS40IDE3MS41TDIwOC4yIDE2OC42TDIxMS4wIDE2NS43TDIxMy42IDE2Mi43TDIxNi4zIDE1OS41TDIxOC44IDE1Ni40TDIyMS40IDE1My4xTDIyMy45IDE0OS44TDIyNi40IDE0Ni41TDIyOC45IDE0My4xTDIzMS40IDEzOS43TDIzNC4wIDEzNi4zTDIzNi41IDEzMi45TDIzOS4yIDEyOS41TDI0MS44IDEyNi4yTDI0NC42IDEyMi45TDI0Ny40IDExOS42TDI1MC4yIDExNi41TDI1My4yIDExMy40TDI1Ni4yIDExMC41TDI1OS4zIDEwNy43TDI2Mi41IDEwNC45TDI2NS44IDEwMi4zTDI2OS4yIDk5LjhMMjcyLjcgOTcuNUwyNzYuMiA5NS4zTDI3OS44IDkzLjJMMjgzLjUgOTEuMkwyODcuMyA4OS4zTDI5MS4xIDg3LjZMMjk0LjkgODUuOUwyOTguOCA4NC40TDMwMi43IDgyLjlMMzA2LjcgODEuNUwzMTAuNiA4MC4yTDMxNC42IDc4LjlMMzE4LjYgNzcuN0wzMjIuNiA3Ni41TDMyNi43IDc1LjRMMzMwLjcgNzQuMkwzMzQuNyA3My4xTDMzOC43IDcyLjBMMzQyLjcgNzAuOEwzNDYuNiA2OS43TDM1MC42IDY4LjZMMzU0LjYgNjcuNUwzNTguNiA2Ni40TDM2Mi41IDY1LjNMMzY2LjUgNjQuMkwzNzAuNSA2My4xTDM3NC40IDYyLjBMMzc4LjQgNjEuMEwzODIuNCA2MC4wTDM4Ni40IDU5LjBMMzkwLjQgNTguMUwzOTQuNCA1Ny4zTDM5OC40IDU2LjZMNDAyLjUgNTUuOUw0MDYuNiA1NS4zTDQxMC42IDU0LjhMNDE0LjcgNTQuNEw0MTguOCA1NC4wTDQyMi45IDUzLjhMNDI3LjEgNTMuN0w0MzEuMiA1My43TDQzNS4zIDUzLjdMNDM5LjQgNTMuOEw0NDMuNiA1NC4wTDQ0Ny43IDU0LjNMNDUxLjggNTQuNkw0NTUuOSA1NC45TDQ2MC4wIDU1LjJMNDY0LjAgNTUuNkw0NjguMSA1Ni4wTDQ3Mi4xIDU2LjNMNDc2LjIgNTYuNkw0ODAuMiA1Ni44TDQ4NC4yIDU3LjBMNDg4LjIgNTcuMUw0OTIuMSA1Ny4xTDQ5Ni4xIDU3LjBMNTAwLjEgNTYuOEw1MDQuMCA1Ni41TDUwOC4wIDU2LjBMNTEyLjAgNTUuNUw1MTYuMCA1NC45TDUyMC4wIDU0LjFMNTI0LjAgNTMuM0w1MjguMSA1Mi4zTDUzMi4xIDUxLjNMNTM2LjIgNTAuMkw1NDAuMyA0OS4xTDU0NC41IDQ3LjlMNTQ4LjYgNDYuN0w1NTIuOCA0NS41TDU1Ny4wIDQ0LjRMNTYxLjMgNDMuMkw1NjUuNSA0Mi4yTDU2OS44IDQxLjJMNTc0LjEgNDAuM0w1NzguNCAzOS41TDU4Mi43IDM4LjhMNTg3LjAgMzguM0w1OTEuMyAzNy45TDU5NS42IDM3LjZMNTk5LjkgMzcuNkw2MDQuMiAzNy43TDYwOC40IDM4LjBMNjEyLjcgMzguNEw2MTYuOCAzOS4xTDYyMS4wIDM5LjlMNjI1LjEgNDAuOEw2MjkuMiA0MS45TDYzMy4yIDQzLjJMNjM3LjIgNDQuNkw2NDEuMiA0Ni4xTDY0NS4xIDQ3LjdMNjQ5LjAgNDkuNEw2NTIuOSA1MS4yTDY1Ni43IDUzLjFMNjYwLjUgNTUuMEw2NjQuMiA1Ny4wTDY2OC4wIDU5LjBMNjcxLjcgNjEuMEw2NzUuNCA2My4xTDY3OS4xIDY1LjFMNjgyLjggNjcuMkw2ODYuNCA2OS4yTDY5MC4xIDcxLjJMNjkzLjcgNzMuMkw2OTcuNCA3NS4zTDcwMS4wIDc3LjNMNzA0LjcgNzkuMkw3MDguMyA4MS4yTDcxMS45IDgzLjJMNzE1LjUgODUuM0w3MTkuMSA4Ny4zTDcyMi43IDg5LjNMNzI2LjMgOTEuNEw3MjkuOCA5My42TDczMy4zIDk1LjdMNzM2LjggOTguMEw3NDAuMiAxMDAuMkw3NDMuNiAxMDIuNkw3NDcuMCAxMDUuMEw3NTAuMyAxMDcuNUw3NTMuNSAxMTAuMEw3NTYuNyAxMTIuN0w3NTkuOSAxMTUuM0w3NjMuMCAxMTguMUw3NjYuMCAxMjAuOUw3NjkuMCAxMjMuN0w3NzEuOSAxMjYuNkw3NzQuOSAxMjkuNUw3NzcuNyAxMzIuNUw3ODAuNiAxMzUuNUw3ODMuNCAxMzguNEw3ODYuMiAxNDEuNEw3ODkuMSAxNDQuM0w3OTEuOSAxNDcuMkw3OTQuNyAxNTAuMUw3OTcuNiAxNTIuOUw4MDAuNSAxNTUuN0w4MDMuNCAxNTguNUw4MDYuNCAxNjEuMUw4MDkuNSAxNjMuN0w4MTIuNiAxNjYuMkw4MTUuOCAxNjguN0w4MTkuMCAxNzEuMEw4MjIuMyAxNzMuNEw4MjUuNyAxNzUuNkw4MjkuMSAxNzcuOEw4MzIuNiAxODAuMEw4MzYuMiAxODIuMUw4MzkuOCAxODQuMkw4NDMuNSAxODYuMkw4NDcuMiAxODguM0w4NTAuOSAxOTAuNEw4NTQuNyAxOTIuNEw4NTguNCAxOTQuNkw4NjIuMiAxOTYuN0w4NjUuOCAxOTguOUw4NjkuNSAyMDEuMkw4NzMuMSAyMDMuNkw4NzYuNiAyMDYuMUw4ODAuMSAyMDguNkw4ODMuNCAyMTEuMkw4ODYuNiAyMTQuMEw4ODkuNyAyMTYuOUw4OTIuNyAyMTkuOUw4OTUuNiAyMjIuOUw4OTguMyAyMjYuMUw5MDAuOSAyMjkuNUw5MDMuMyAyMzIuOUw5MDUuNiAyMzYuNEw5MDcuOCAyNDAuMEw5MDkuOCAyNDMuN0w5MTEuNyAyNDcuNUw5MTMuNCAyNTEuM0w5MTUuMSAyNTUuMkw5MTYuNiAyNTkuMkw5MTguMSAyNjMuMkw5MTkuNSAyNjcuMkw5MjAuOCAyNzEuMkw5MjIuMCAyNzUuM0w5MjMuMyAyNzkuM0w5MjQuNCAyODMuNEw5MjUuNiAyODcuNEw5MjYuOCAyOTEuNUw5MjguMCAyOTUuNUw5MjkuMSAyOTkuNUw5MzAuMyAzMDMuNEw5MzEuNiAzMDcuNEw5MzIuOCAzMTEuM0w5MzQuMSAzMTUuMkw5MzUuNCAzMTkuMEw5MzYuOCAzMjIuOUw5MzguMiAzMjYuN0w5MzkuNiAzMzAuNUw5NDEuMCAzMzQuM0w5NDIuNSAzMzguMUw5NDMuOSAzNDEuOUw5NDUuNCAzNDUuNkw5NDYuOCAzNDkuNEw5NDguMiAzNTMuMkw5NDkuNiAzNTcuMEw5NTEuMCAzNjAuOEw5NTIuMyAzNjQuN0w5NTMuNiAzNjguNUw5NTQuOCAzNzIuNEw5NTYuMCAzNzYuM0w5NTcuMSAzODAuMkw5NTguMSAzODQuMUw5NTkuMSAzODguMEw5NjAuMCAzOTIuMEw5NjAuOSAzOTUuOUw5NjEuNiAzOTkuOUw5NjIuNCA0MDMuOUw5NjMuMSA0MDcuOUw5NjMuOCA0MTEuOEw5NjQuNCA0MTUuOEw5NjUuMSA0MTkuOEw5NjUuNyA0MjMuOEw5NjYuMyA0MjcuOEw5NjcuMCA0MzEuOEw5NjcuNyA0MzUuN0w5NjguNCA0MzkuN0w5NjkuMiA0NDMuN0w5NzAuMSA0NDcuNkw5NzEuMCA0NTEuNkw5NzEuOSA0NTUuNUw5NzMuMCA0NTkuNUw5NzQuMSA0NjMuNEw5NzUuMyA0NjcuNEw5NzYuNiA0NzEuNEw5NzcuOSA0NzUuM0w5NzkuMyA0NzkuM0w5ODAuNyA0ODMuM0w5ODIuMSA0ODcuNEw5ODMuNiA0OTEuNEw5ODUuMSA0OTUuNUw5ODYuNiA0OTkuNkw5ODguMSA1MDMuN0w5ODkuNSA1MDcuOEw5OTAuOCA1MTIuMFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E5NzgyRiIgc3Ryb2tlLXdpZHRoPSIxNiIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxjaXJjbGUgY3g9IjUxMiIgY3k9IjUxMiIgcj0iNDAyIiBmaWxsPSJub25lIiBzdHJva2U9IiNBOTc4MkYiIHN0cm9rZS13aWR0aD0iOSIvPjxjaXJjbGUgY3g9IjUxMiIgY3k9IjUxMiIgcj0iMjkyIiBmaWxsPSJub25lIiBzdHJva2U9IiNBOTc4MkYiIHN0cm9rZS13aWR0aD0iOSIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgyLjkyMykgdHJhbnNsYXRlKC0xNi42MyAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTggNTkxSDE5M1YwSDMxMVY1OTFINDk2VjcwMEg4WiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgxNC4yOTQpIHRyYW5zbGF0ZSgtMjQuNTUgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik01NDggNzAwVjQzMEgxOTZWNzAwSDc4VjBIMTk2VjMyMUg1NDhWMEg2NjZWNzAwWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgyNi4wNTMpIHRyYW5zbGF0ZSgtMTguODQgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik03OCA3MDBWMEg1MDRWMTA0SDE5NFYzMjRINDg0VjQyNkgxOTRWNTk2SDUwNFY3MDBaIiBmaWxsPSIjQTk3ODJGIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEyIDUxMikgcm90YXRlKDQ1LjY5NikgdHJhbnNsYXRlKC0yNi4xMCAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTQxMSAyNjZINjI2UTYxNyAyMzEgNTk5LjAgMjAwLjBRNTgxIDE2OSA1NTQuMCAxNDUuMFE1MjcgMTIxIDQ5MC4wIDEwOC4wUTQ1MyA5NSA0MDYgOTVRMzM3IDk1IDI4Mi4wIDEyNy4wUTIyNyAxNTkgMTk1LjAgMjE2LjVRMTYzIDI3NCAxNjMgMzUwUTE2MyA0MjcgMTk1LjUgNDgzLjVRMjI4IDU0MCAyODMuNSA1NzEuNVEzMzkgNjAzIDQwNiA2MDNRNDc5IDYwMyA1MzAuNSA1NzMuMFE1ODIgNTQzIDYxMSA0OTNMNzA3IDU1N1E2NzYgNjA2IDYzMi4wIDY0MC41UTU4OCA2NzUgNTMxLjUgNjk0LjBRNDc1IDcxMyA0MDYgNzEzUTMyNyA3MTMgMjYwLjAgNjg2LjVRMTkzIDY2MCAxNDMuMCA2MTEuNVE5MyA1NjMgNjUuNSA0OTYuNVEzOCA0MzAgMzggMzUwUTM4IDI3MCA2NS4wIDIwMy4wUTkyIDEzNiAxNDEuNSA4Ny4wUTE5MSAzOCAyNTguMCAxMS41UTMyNSAtMTUgNDA0IC0xNVE0ODggLTE1IDU1My4wIDE1LjVRNjE4IDQ2IDY2Mi4wIDk5LjBRNzA2IDE1MiA3MjguMCAyMjAuNVE3NTAgMjg5IDc0OCAzNjZINDExWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSg1Ny44NjcpIHRyYW5zbGF0ZSgtMTkuNjQgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik03OCA3MDBWMEgxOTZWMjY1SDI2OUw0NDUgMEg1ODhMMzkwIDI3OFE0MTAgMjg0IDQyNyAyOTJRNDgzIDMxOSA1MTQuNSAzNjguMFE1NDYgNDE3IDU0Ni4wIDQ4My4wUTU0NiA1NDkgNTE0LjUgNTk3LjVRNDgzIDY0NiA0MjcuMCA2NzMuMFEzNzEgNzAwIDI5NCA3MDBaTTE5NiAzNjNWNTk4SDI4OVEzMzAgNTk4IDM2MC4wIDU4NC4wUTM5MCA1NzAgNDA3LjAgNTQ0LjBRNDI0IDUxOCA0MjQgNDgwUTQyNCA0NDMgNDA3LjAgNDE2LjVRMzkwIDM5MCAzNjAuMCAzNzYuNVEzMzAgMzYzIDI4OSAzNjNaIiBmaWxsPSIjQTk3ODJGIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEyIDUxMikgcm90YXRlKDY5LjQ1MikgdHJhbnNsYXRlKC0yMi43NyAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTQ3NCAxODAgNTU0IDBINjg4TDM0NSA3MzlMMyAwSDEzNkwyMTYgMTgwWk0zNDUgNTAyIDQ0MSAyODBIMjUwWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSg4Mi40NzYpIHRyYW5zbGF0ZSgtMjcuODIgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik0yMDggNDI2IDQyMSA2NSA2MzUgNDI2IDY4MyAwSDgwNUw3MDkgNzM1TDQyMSAyNjBMMTM0IDczNUwzOCAwSDE2MFoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoOTYuMzg3KSB0cmFuc2xhdGUoLTI3LjgyIC0zMjYuMDApIHNjYWxlKDAuMDY2MDAgLTAuMDY2MDApIiBkPSJNMjA4IDQyNiA0MjEgNjUgNjM1IDQyNiA2ODMgMEg4MDVMNzA5IDczNUw0MjEgMjYwTDEzNCA3MzVMMzggMEgxNjBaIiBmaWxsPSIjQTk3ODJGIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEyIDUxMikgcm90YXRlKDEwOS40MTApIHRyYW5zbGF0ZSgtMjIuNzcgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik00NzQgMTgwIDU1NCAwSDY4OEwzNDUgNzM5TDMgMEgxMzZMMjE2IDE4MFpNMzQ1IDUwMiA0NDEgMjgwSDI1MFoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMTI2Ljk0OCkgdHJhbnNsYXRlKC0xMC4yMCAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTg0IDI1MVE4NCAyMjMgMTA0LjUgMjAyLjBRMTI1IDE4MSAxNTUgMTgxUTE4NSAxODEgMjA1LjAgMjAyLjBRMjI1IDIyMyAyMjUgMjUxUTIyNSAyODAgMjA1LjAgMzAwLjVRMTg1IDMyMSAxNTUgMzIxUTEyNSAzMjEgMTA0LjUgMzAwLjVRODQgMjgwIDg0IDI1MVoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMTQ0LjU1MSkgdHJhbnNsYXRlKC0yMy4xMyAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTc4IDcwMFYwSDMwNFE0MTEgMCA0OTIuMCA0My41UTU3MyA4NyA2MTguNSAxNjUuNVE2NjQgMjQ0IDY2NC4wIDM1MC4wUTY2NCA0NTYgNjE4LjUgNTM0LjVRNTczIDYxMyA0OTIuMCA2NTYuNVE0MTEgNzAwIDMwNCA3MDBaTTE5OSAxMTFWNTg5SDMwMVEzNTMgNTg5IDM5Ny4wIDU3NC4wUTQ0MSA1NTkgNDczLjUgNTI5LjBRNTA2IDQ5OSA1MjQuNSA0NTQuMFE1NDMgNDA5IDU0My4wIDM1MC4wUTU0MyAyOTEgNTI0LjUgMjQ2LjBRNTA2IDIwMSA0NzMuNSAxNzEuNVE0NDEgMTQyIDM5Ny4wIDEyNi41UTM1MyAxMTEgMzAxIDExMVoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMTU0LjM0NCkgdHJhbnNsYXRlKC05LjA4IC0zMjYuMDApIHNjYWxlKDAuMDY2MDAgLTAuMDY2MDApIiBkPSJNNzggNzAwVjBIMTk4VjcwMFoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMTY0LjY1OCkgdHJhbnNsYXRlKC0yNi4xMCAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTQxMSAyNjZINjI2UTYxNyAyMzEgNTk5LjAgMjAwLjBRNTgxIDE2OSA1NTQuMCAxNDUuMFE1MjcgMTIxIDQ5MC4wIDEwOC4wUTQ1MyA5NSA0MDYgOTVRMzM3IDk1IDI4Mi4wIDEyNy4wUTIyNyAxNTkgMTk1LjAgMjE2LjVRMTYzIDI3NCAxNjMgMzUwUTE2MyA0MjcgMTk1LjUgNDgzLjVRMjI4IDU0MCAyODMuNSA1NzEuNVEzMzkgNjAzIDQwNiA2MDNRNDc5IDYwMyA1MzAuNSA1NzMuMFE1ODIgNTQzIDYxMSA0OTNMNzA3IDU1N1E2NzYgNjA2IDYzMi4wIDY0MC41UTU4OCA2NzUgNTMxLjUgNjk0LjBRNDc1IDcxMyA0MDYgNzEzUTMyNyA3MTMgMjYwLjAgNjg2LjVRMTkzIDY2MCAxNDMuMCA2MTEuNVE5MyA1NjMgNjUuNSA0OTYuNVEzOCA0MzAgMzggMzUwUTM4IDI3MCA2NS4wIDIwMy4wUTkyIDEzNiAxNDEuNSA4Ny4wUTE5MSAzOCAyNTguMCAxMS41UTMyNSAtMTUgNDA0IC0xNVE0ODggLTE1IDU1My4wIDE1LjVRNjE4IDQ2IDY2Mi4wIDk5LjBRNzA2IDE1MiA3MjguMCAyMjAuNVE3NTAgMjg5IDc0OCAzNjZINDExWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgxNzQuOTczKSB0cmFuc2xhdGUoLTkuMDggLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik03OCA3MDBWMEgxOThWNzAwWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgxODMuNjI0KSB0cmFuc2xhdGUoLTE2LjYzIC0zMjYuMDApIHNjYWxlKDAuMDY2MDAgLTAuMDY2MDApIiBkPSJNOCA1OTFIMTkzVjBIMzExVjU5MUg0OTZWNzAwSDhaIiBmaWxsPSIjQTk3ODJGIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEyIDUxMikgcm90YXRlKDE5NC42ODEpIHRyYW5zbGF0ZSgtMjIuNzcgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik00NzQgMTgwIDU1NCAwSDY4OEwzNDUgNzM5TDMgMEgxMzZMMjE2IDE4MFpNMzQ1IDUwMiA0NDEgMjgwSDI1MFoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMjA1LjYwNSkgdHJhbnNsYXRlKC0xNS44NyAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTc4IDcwMFYwSDQ3NFYxMDZIMTk2VjcwMFoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMjIxLjczNCkgdHJhbnNsYXRlKC05LjA4IC0zMjYuMDApIHNjYWxlKDAuMDY2MDAgLTAuMDY2MDApIiBkPSJNNzggNzAwVjBIMTk4VjcwMFoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMjMyLjAwMikgdHJhbnNsYXRlKC0yNS44NCAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTU4OSA3MDBWMjMwTDc4IDczNVYwSDE5NFY0NzBMNzA1IC0zNVY3MDBaIiBmaWxsPSIjQTk3ODJGIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEyIDUxMikgcm90YXRlKDI0NC42NzgpIHRyYW5zbGF0ZSgtMjIuNzcgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik0zNDUgMjA4IDEzOSA3MDBIM0wzNDUgLTM5TDY4OCA3MDBINTUxWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgyNTQuNDA3KSB0cmFuc2xhdGUoLTkuMDggLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik03OCA3MDBWMEgxOThWNzAwWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgyNjMuMDU3KSB0cmFuc2xhdGUoLTE2LjYzIC0zMjYuMDApIHNjYWxlKDAuMDY2MDAgLTAuMDY2MDApIiBkPSJNOCA1OTFIMTkzVjBIMzExVjU5MUg0OTZWNzAwSDhaIiBmaWxsPSIjQTk3ODJGIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEyIDUxMikgcm90YXRlKDI3NC4xMTQpIHRyYW5zbGF0ZSgtMjIuNzcgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik00NzQgMTgwIDU1NCAwSDY4OEwzNDUgNzM5TDMgMEgxMzZMMjE2IDE4MFpNMzQ1IDUwMiA0NDEgMjgwSDI1MFoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMjg1LjE3MikgdHJhbnNsYXRlKC0xNi42MyAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTggNTkxSDE5M1YwSDMxMVY1OTFINDk2VjcwMEg4WiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgyOTMuODIyKSB0cmFuc2xhdGUoLTkuMDggLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik03OCA3MDBWMEgxOThWNzAwWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgzMDQuMjA2KSB0cmFuc2xhdGUoLTI2LjUwIC0zMjYuMDApIHNjYWxlKDAuMDY2MDAgLTAuMDY2MDApIiBkPSJNMTYzIDM1MFExNjMgNDIyIDE5NC4wIDQ3OC41UTIyNSA1MzUgMjc4LjUgNTY3LjBRMzMyIDU5OSA0MDEgNTk5UTQ3MiA1OTkgNTI1LjUgNTY3LjBRNTc5IDUzNSA2MDkuMCA0NzguNVE2MzkgNDIyIDYzOSAzNTBRNjM5IDI3OCA2MDguNSAyMjIuMFE1NzggMTY2IDUyNC41IDEzMy41UTQ3MSAxMDEgNDAxIDEwMVEzMzIgMTAxIDI3OC41IDEzMy41UTIyNSAxNjYgMTk0LjAgMjIyLjBRMTYzIDI3OCAxNjMgMzUwWk0zOCAzNTBRMzggMjcyIDY1LjAgMjA1LjBROTIgMTM4IDE0MS4wIDg5LjBRMTkwIDQwIDI1Ni41IDEyLjVRMzIzIC0xNSA0MDEgLTE1UTQ4MSAtMTUgNTQ3LjAgMTIuNVE2MTMgNDAgNjYyLjAgODkuMFE3MTEgMTM4IDczOC4wIDIwNS4wUTc2NSAyNzIgNzY1IDM1MFE3NjUgNDI5IDczOC4wIDQ5NS4wUTcxMSA1NjEgNjYxLjUgNjA5LjVRNjEyIDY1OCA1NDYuMCA2ODUuNVE0ODAgNzEzIDQwMSA3MTNRMzI0IDcxMyAyNTcuNSA2ODUuNVExOTEgNjU4IDE0MS41IDYwOS41UTkyIDU2MSA2NS4wIDQ5NS4wUTM4IDQyOSAzOCAzNTBaIiBmaWxsPSIjQTk3ODJGIi8+PHBhdGggdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTEyIDUxMikgcm90YXRlKDMxNy41MzcpIHRyYW5zbGF0ZSgtMjUuODQgLTMyNi4wMCkgc2NhbGUoMC4wNjYwMCAtMC4wNjYwMCkiIGQ9Ik01ODkgNzAwVjIzMEw3OCA3MzVWMEgxOTRWNDcwTDcwNSAtMzVWNzAwWiIgZmlsbD0iI0E5NzgyRiIvPjxwYXRoIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMiA1MTIpIHJvdGF0ZSgzMjkuNTY5KSB0cmFuc2xhdGUoLTE5LjExIC0zMjYuMDApIHNjYWxlKDAuMDY2MDAgLTAuMDY2MDApIiBkPSJNMTI0IDIyNiAzNiAxNjRRNTkgMTE2IDk4LjUgNzUuMFExMzggMzQgMTkwLjUgOS41UTI0MyAtMTUgMzA0IC0xNVEzNDkgLTE1IDM5MC41IC0wLjVRNDMyIDE0IDQ2NS4wIDQwLjVRNDk4IDY3IDUxNy41IDEwNi4wUTUzNyAxNDUgNTM3IDE5NFE1MzcgMjQwIDUyMS4wIDI3NC41UTUwNSAzMDkgNDc5LjUgMzM0LjBRNDU0IDM1OSA0MjIuNSAzNzYuMFEzOTEgMzkzIDM1OSA0MDRRMzAzIDQyNCAyNjguMCA0NDMuMFEyMzMgNDYyIDIxNi41IDQ4My41UTIwMCA1MDUgMjAwIDUzMlEyMDAgNTYyIDIyMy4wIDU4NC41UTI0NiA2MDcgMjk1IDYwN1EzMzAgNjA3IDM1Ni41IDU5My41UTM4MyA1ODAgNDAzLjAgNTU3LjVRNDIzIDUzNSA0MzcgNTA5TDUzMiA1NjNRNTE1IDYwMCA0ODMuMCA2MzQuMFE0NTEgNjY4IDQwNS4wIDY5MC41UTM1OSA3MTMgMjk3IDcxM1EyMzQgNzEzIDE4NC41IDY4OS4wUTEzNSA2NjUgMTA2LjAgNjIyLjVRNzcgNTgwIDc3IDUyNFE3NyA0NzUgOTYuMCA0NDAuNVExMTUgNDA2IDE0NC4wIDM4Mi41UTE3MyAzNTkgMjA1LjAgMzQzLjVRMjM3IDMyOCAyNjMgMzE5UTMwNyAzMDMgMzQxLjAgMjg2LjVRMzc1IDI3MCAzOTMuNSAyNDYuNVE0MTIgMjIzIDQxMiAxODVRNDEyIDE0MyAzODIuMCAxMTcuMFEzNTIgOTEgMzA0IDkxUTI2NSA5MSAyMzIuNSAxMDguMFEyMDAgMTI1IDE3My41IDE1NS4wUTE0NyAxODUgMTI0IDIyNloiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MTIgNTEyKSByb3RhdGUoMzQ2LjQ2MykgdHJhbnNsYXRlKC0xMC4yMCAtMzI2LjAwKSBzY2FsZSgwLjA2NjAwIC0wLjA2NjAwKSIgZD0iTTg0IDI1MVE4NCAyMjMgMTA0LjUgMjAyLjBRMTI1IDE4MSAxNTUgMTgxUTE4NSAxODEgMjA1LjAgMjAyLjBRMjI1IDIyMyAyMjUgMjUxUTIyNSAyODAgMjA1LjAgMzAwLjVRMTg1IDMyMSAxNTUgMzIxUTEyNSAzMjEgMTA0LjUgMzAwLjVRODQgMjgwIDg0IDI1MVoiIGZpbGw9IiNBOTc4MkYiLz48cGF0aCB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDQuNTAgNjMwLjk1KSBzY2FsZSgwLjM1MDAwIC0wLjM1MDAwKSIgZD0iTS0yMSAwIC0xMyA0MkgwUTIyIDQyIDQxLjUgNDYuNVE2MSA1MSA3NS41IDY1LjVROTAgODAgOTcgMTA5TDIwMiA2MDRRMjA0IDYxMCAyMDUuMCA2MTkuMFEyMDYgNjI4IDIwNiA2MzJRMjA2IDY1OCAxODYuMCA2NjUuMFExNjYgNjcyIDEzNCA2NzJIMTIxTDEzMCA3MTRINjI0TDU5MiA1MzlINTQwUTU0MSA1NTAgNTQyLjAgNTYyLjVRNTQzIDU3NSA1NDQuMCA1ODUuMFE1NDUgNTk1IDU0NSA1OTdRNTQ1IDYyNiA1MjguNSA2NDUuMFE1MTIgNjY0IDQ3MCA2NjRIMzE2TDE5OSAxMTRRMTk4IDEwNyAxOTcuMCAxMDAuNVExOTYgOTQgMTk2IDg5UTE5NiA1OCAyMTYuNSA1MC4wUTIzNyA0MiAyNjUgNDJIMjk4TDI5MCAwWiIgZmlsbD0iI0E5NzgyRiIvPjwvc3ZnPg==" alt="The Gramma stamp" width="96" height="96">
+    <a class="brand" href="#top" data-go>THE GRAMMA</a>
+    <p class="script">Every occasion deserves a letter.</p>
+    <p>Bespoke digital invitations and interactive event websites</p>
+    <p>© 2026 The Gramma · <a href="https://thegramma.com/" target="_blank" rel="noopener">thegramma.com</a></p>
+  </div>
+</footer>
+
+<!-- fullscreen preview -->
+<div class="pv" id="pv" role="dialog" aria-modal="true" aria-label="Invitation preview">
+  <button class="pv-close" id="pvClose" aria-label="Close preview">×</button>
+  <div class="pv-box">
+    <div class="pv-inv" id="pvInv"></div>
+    <div class="pv-txt">
+      <p class="eyebrow" id="pvEye"></p>
+      <h3 id="pvTitle"></h3>
+      <p id="pvDesc"></p>
+      <ul id="pvList"></ul>
+      <div class="pv-actions">
+        <a class="btn solid sm" id="pvReq" href="#contact">Request this style</a>
+      </div>
+    </div>
+  </div>
+  <div class="pv-nav"><button id="pvPrev" type="button">← Previous</button><button id="pvNext" type="button">Next →</button></div>
+</div>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- wax seal edge --- */
+  (function(){
+    let d='';const N=720;
+    for(let i=0;i<=N;i++){const a=i/N*Math.PI*2;
+      const r=166+7*Math.sin(9*a+.6)+3*Math.sin(17*a)+2.2*Math.sin(5*a+1.3);
+      d+=(i?'L':'M')+(200+Math.cos(a)*r).toFixed(1)+' '+(200+Math.sin(a)*r).toFixed(1);}
+    $('#scallop').setAttribute('d',d+'Z');
+  })();
+
+  /* --- drifting handwritten words --- */
+  (function(){
+    const W=["Weddings","Birthdays","Parties","Anniversaries","Baptisms","Baby Showers","Gender Reveals","Engagements","Graduations","Corporate Events","Celebrations","Special Occasions"];
+    const host=$('#words'), rows=9, cols=['var(--gold)','var(--sage)','var(--ink-soft)'];
+    for(let r=0;r<rows;r++){
+      const row=document.createElement('div');row.className='wrow';
+      const seq=W.map((_,i)=>W[(i+r*5)%W.length]);
+      const one=seq.map(w=>'<span>'+w+'</span>').join('<i>·</i>')+'<i>·</i>';
+      const tr=document.createElement('div');tr.className='wtrack';tr.innerHTML=one+one+one+one;
+      tr.style.setProperty('--dur',(130+r*19)+'s');
+      if(r%2)tr.style.animationDirection='reverse';
+      row.style.fontSize=(1.7+((r*7)%5)*.36).toFixed(2)+'rem';
+      row.style.setProperty('--c',cols[r%3]);
+      row.style.opacity=(.34+((r*3)%4)*.07).toFixed(2);
+      row.appendChild(tr);host.appendChild(row);
+    }
+  })();
+
+  /* --- sparkles, used sparingly --- */
+  (function(){
+    const c=$('#sparkles');if(!c||reduce)return;
+    const ctx=c.getContext('2d');let w=0,h=0;
+    function size(){const r=c.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);w=r.width;h=r.height;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+    size();addEventListener('resize',size);
+    const sp=()=>({x:.18+Math.random()*.64,y:.06+Math.random()*.62,s:3+Math.random()*5,t:-Math.random()*3,v:.008+Math.random()*.008});
+    const P=Array.from({length:14},sp);
+    function star(x,y,s,a){ctx.save();ctx.translate(x,y);ctx.globalAlpha=a;ctx.fillStyle='#C9A05C';ctx.beginPath();for(let i=0;i<8;i++){const r=i%2?s*.2:s,an=i*Math.PI/4;ctx.lineTo(Math.cos(an)*r,Math.sin(an)*r);}ctx.closePath();ctx.fill();ctx.restore();}
+    (function loop(){ctx.clearRect(0,0,w,h);
+      P.forEach(p=>{p.t+=p.v;if(p.t>Math.PI){Object.assign(p,sp());}if(p.t>0)star(p.x*w,p.y*h,p.s,Math.sin(p.t)*.85);});
+      requestAnimationFrame(loop);})();
+  })();
+
+  /* --- reveal on scroll --- */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+  $$('.reveal').forEach(el=>io.observe(el));
+  requestAnimationFrame(()=>$('#h1u').classList.add('in'));
+
+  /* --- nav state + smooth anchors --- */
+  const nav=$('#nav');const onS=()=>nav.classList.toggle('scrolled',scrollY>30);onS();addEventListener('scroll',onS,{passive:true});
+  function goTo(id){const el=id==='#top'?document.body:document.querySelector(id);if(el)el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+  document.addEventListener('click',e=>{const a=e.target.closest('a[data-go]');if(!a)return;e.preventDefault();
+    if(a.dataset.pack){$('#pack').value=a.dataset.pack;}
+    goTo(a.getAttribute('href'));});
+
+  /* --- magnetic buttons --- */
+  if(!reduce&&matchMedia('(hover:hover)').matches){
+    $$('.magnetic').forEach(b=>{
+      b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();
+        b.style.setProperty('--bx',((e.clientX-r.left-r.width/2)*.22).toFixed(1)+'px');
+        b.style.setProperty('--by',((e.clientY-r.top-r.height/2)*.34).toFixed(1)+'px');});
+      b.addEventListener('pointerleave',()=>{b.style.setProperty('--bx','0px');b.style.setProperty('--by','0px');});
+    });
+  }
+
+  /* --- portfolio --- */
+  function branch(x,y,rot,s,flip){
+    const leaves=[[.18,-1],[.3,1],[.44,-1],[.56,1],[.7,-1],[.82,1]];
+    let g='<g transform="translate('+x+' '+y+') rotate('+rot+') scale('+(flip?-s:s)+' '+s+')" fill="none" stroke="currentColor" stroke-width=".5"><path d="M0 0C6-10 14-24 16-46"/>';
+    leaves.forEach(([t,sd],i)=>{const px=16*t*(1+.1*t),py=-46*t;g+='<ellipse cx="'+(px+sd*5).toFixed(1)+'" cy="'+py.toFixed(1)+'" rx="2.2" ry="5.4" transform="rotate('+(sd*52)+' '+px.toFixed(1)+' '+py.toFixed(1)+')" fill="currentColor" fill-opacity=".16"/>';});
+    return g+'</g>';
+  }
+  const ART={
+    wedding:'<svg class="art" viewBox="0 0 100 133" preserveAspectRatio="xMidYMid slice" style="color:var(--ac)">'+branch(-2,26,28,.9)+branch(102,112,208,.9)+branch(6,130,-20,.5)+'</svg>',
+    baptism:'<svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width=".35" style="color:var(--ac)"><path d="M18 100V42a32 32 0 0 1 64 0v58"/><path d="M24 100V44a26 26 0 0 1 52 0v56" stroke-opacity=".5"/><path d="M50 8v9M46 12h8" stroke-width=".5"/></svg>',
+    birthday:'<svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width=".3" style="color:var(--ac)">'+[[14,20,5],[86,14,3],[80,44,6],[10,58,3.5],[90,82,4.5],[22,88,6],[60,94,2.5],[38,10,2.5],[70,72,2]].map(([x,y,r])=>'<circle cx="'+x+'" cy="'+y+'" r="'+r+'"/><circle cx="'+(x-r*.3)+'" cy="'+(y-r*.3)+'" r="'+(r*.18)+'" fill="currentColor" stroke="none"/>').join('')+'</svg>',
+    baby:'<svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style="color:var(--ac)"><path transform="translate(14 -2) scale(.8)" d="M78 14a17 17 0 1 0 8 30a14 14 0 1 1-8-30z" fill="currentColor" fill-opacity=".28" stroke="currentColor" stroke-width=".4"/><g fill="currentColor" fill-opacity=".55"><path d="M22 20l1.2 3 3 1.2-3 1.2L22 28l-1.2-3-3-1.2 3-1.2z"/><path d="M60 12l.9 2.2 2.2.9-2.2.9L60 18l-.9-2-2.2-.9 2.2-.9z"/><path d="M14 52l.9 2.2 2.2.9-2.2.9L14 58l-.9-2-2.2-.9 2.2-.9z"/></g><g fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width=".35"><circle cx="24" cy="88" r="7"/><circle cx="33" cy="84" r="9"/><circle cx="44" cy="88" r="7"/><circle cx="76" cy="90" r="6"/><circle cx="84" cy="86" r="8"/><circle cx="93" cy="90" r="5"/></g></svg>',
+    luxury:'<svg class="art" viewBox="0 0 100 133" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width=".3" style="color:var(--ac)"><g transform="translate(50 133)">'+Array.from({length:19},(_,i)=>{const a=(-90+(i-9)*8.5)*Math.PI/180;return '<path d="M0 0L'+(Math.cos(a)*120).toFixed(1)+' '+(Math.sin(a)*120).toFixed(1)+'" stroke-opacity=".45"/>';}).join('')+[30,48,66,84].map(r=>'<path d="M'+(-r)+' 0A'+r+' '+r+' 0 0 1 '+r+' 0"/>').join('')+'</g></svg>',
+    corporate:'<svg class="art" viewBox="0 0 100 75" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-width=".18" style="color:var(--ac)">'+[20,40,60,80].map(x=>'<path d="M'+x+' 0V75" stroke-opacity=".5"/>').join('')+[25,50].map(y=>'<path d="M0 '+y+'H100" stroke-opacity=".5"/>').join('')+'<rect x="60" y="0" width="40" height="25" fill="currentColor" fill-opacity=".22" stroke="none"/></svg>'
+  };
+  const ITEMS=[
+    {key:'wedding',label:'Wedding',ar:'3/4.15',b1:'linear-gradient(170deg,#FCF8EE,#EFE2C8)',fg:'#2A2724',ac:'#9A7434',ln:'rgba(181,142,79,.55)',kick:'Together with their families',t:'Eleni & Nikos',l:'invite you to celebrate their wedding',m:'Saturday 14 June 2027 · Santorini',seal:true,
+      desc:'A wedding suite that opens like a letter: envelope, wax seal, your story, the schedule and RSVP, all in one private link.',inc:['Animated envelope and seal opening','Olive-branch illustration in your palette','Schedule, venue and travel notes','RSVP with meal choices'],event:'Wedding'},
+    {key:'baptism',label:'Baptism',ar:'1/1.18',b1:'linear-gradient(180deg,#EEF1E4,#DCE3CE)',fg:'#2F3A2C',ac:'#5E7158',ln:'rgba(94,113,88,.5)',kick:'With grateful hearts',t:'Maria-Eleni',l:'is baptised on Sunday, the fourth of October',m:'Church service 11:00 · Lunch to follow',seal:false,
+      desc:'Soft, reverent and quietly festive: the service, the celebration lunch and a place for blessings.',inc:['Arched frame in sage and gold','Two-part details for church and lunch','Gentle wording in English and Greek','Guest blessings page'],event:'Baptism'},
+    {key:'birthday',label:'Birthday',ar:'1/1',b1:'linear-gradient(160deg,#FBEFD6,#F2D9A6)',fg:'#2A2724',ac:'#8A6A35',ln:'rgba(138,106,53,.45)',kick:'You are invited',t:'Sofia turns 30',l:'champagne, dancing and a long table',m:'Friday 21 May · From 8 pm',seal:false,
+      desc:'A milestone announced with sparkle. Playful in the details, never noisy.',inc:['Champagne-bubble motion','Dress code and playlist requests','One-tap add to calendar','RSVP with plus-ones'],event:'Birthday'},
+    {key:'baby',label:'Baby Shower',ar:'3/3.7',b1:'linear-gradient(180deg,#F1F3E8,#E4E8D6)',fg:'#34402F',ac:'#6E8266',ln:'rgba(110,130,102,.5)',kick:'A little one is on the way',t:'Baby Kostas',l:'a sweet afternoon to celebrate',m:'Sunday 9 May · 5 pm · Garden',seal:false,
+      desc:'Gentle colours and a hand-lettered welcome for the smallest guest of honour.',inc:['Moon, stars and clouds in soft sage','Registry link and wish list','Guestbook for messages to the baby','RSVP with a note for the hosts'],event:'Baby Shower'},
+    {key:'luxury',label:'Luxury Event',ar:'3/4.4',b1:'linear-gradient(170deg,#3A342C,#1E1B18)',fg:'#F1E4C3',ac:'#DDBF80',ln:'rgba(221,191,128,.55)',kick:'By invitation only',t:'An Evening of Gold',l:'a private gala dinner',m:'Thursday 2 December · Black tie',seal:true,
+      desc:'For galas and private evenings: dark, gilded and unmistakably by invitation.',inc:['Art-deco gold linework','Personalised guest name on opening','Seating and menu pages','Discreet RSVP'],event:'Other celebration'},
+    {key:'corporate',label:'Corporate Event',ar:'4/3',b1:'linear-gradient(160deg,#FAF6EE,#EBE3D2)',fg:'#2A2724',ac:'#5E7158',ln:'rgba(42,39,36,.3)',kick:'You are cordially invited',t:'Partners’ Summit 2027',l:'two days of ideas and conversation',m:'12 – 13 March · Athens',seal:false,serif:true,
+      desc:'Composed and confident. Brand-true invitations that feel like fine stationery, not an email blast.',inc:['Your brand palette and typography','Agenda and speaker pages','Check-in ready guest list','Reminder and follow-up messages'],event:'Corporate Event'}
+  ];
+  function inv(it,large){
+    return '<div class="inv" style="--ar:'+it.ar+';--b1:'+it.b1+';--fg:'+it.fg+';--ac:'+it.ac+';--ln:'+it.ln+'">'+ART[it.key]+'<span class="in-frame"></span>'+
+      '<div class="body"><p class="k">'+it.kick+'</p><h3 class="t'+(it.serif?' serif':'')+'">'+it.t+'</h3><p class="l">'+it.l+'</p><p class="m">'+it.m+'</p>'+(it.seal?'<span class="dot">Γ</span>':'')+'</div></div>';
+  }
+  const M=$('#masonry');
+  M.innerHTML=ITEMS.map((it,i)=>'<button class="tile reveal" style="--d:'+(i%3)*.12+'s" data-i="'+i+'" aria-label="Open '+it.label+' preview"><span class="sample">Sample concept</span><span class="view"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#2A2724" stroke-width="1.2"><path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/></svg></span>'+inv(it)+'<span class="cap"><b>'+it.label+'</b><span>View</span></span></button>').join('');
+  $$('.tile.reveal').forEach(el=>io.observe(el));
+
+  const pv=$('#pv');let cur=0,lastFocus=null;
+  function show(i){cur=(i+ITEMS.length)%ITEMS.length;const it=ITEMS[cur];
+    $('#pvInv').innerHTML='<span class="sample">Sample concept</span>'+inv(it,true);
+    $('#pvInv').style.animation='none';void $('#pvInv').offsetWidth;$('#pvInv').style.animation='';
+    $('#pvEye').textContent=it.label+' · sample concept';$('#pvTitle').textContent=it.t;$('#pvDesc').textContent=it.desc;
+    $('#pvList').innerHTML=it.inc.map(x=>'<li>'+x+'</li>').join('');}
+  function open(i){lastFocus=document.activeElement;show(i);pv.classList.add('open');document.documentElement.style.overflow='hidden';$('#pvClose').focus();}
+  function close(){pv.classList.remove('open');document.documentElement.style.overflow='';if(lastFocus)lastFocus.focus();}
+  M.addEventListener('click',e=>{const t=e.target.closest('.tile');if(t)open(+t.dataset.i);});
+  $('#pvClose').onclick=close;$('#pvPrev').onclick=()=>show(cur-1);$('#pvNext').onclick=()=>show(cur+1);
+  pv.addEventListener('click',e=>{if(e.target===pv)close();});
+  addEventListener('keydown',e=>{if(!pv.classList.contains('open'))return;if(e.key==='Escape')close();if(e.key==='ArrowRight')show(cur+1);if(e.key==='ArrowLeft')show(cur-1);});
+  $('#pvReq').addEventListener('click',e=>{e.preventDefault();$('#event').value=ITEMS[cur].event;close();setTimeout(()=>goTo('#contact'),60);});
+
+  /* --- contact form: prepares the message for email --- */
+  const form=$('#form'),sent=$('#sent'),TO='thegrammastudio@gmail.com';
+  let text='';
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=$('#name').value.trim(),email=$('#email').value.trim(),msg=$('#msg').value.trim();
+    const okE=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+    $('#f-name').classList.toggle('bad',!name);$('#f-email').classList.toggle('bad',!okE);$('#f-msg').classList.toggle('bad',!msg);
+    if(!name||!okE||!msg)return;
+    const ev=$('#event').value,pk=$('#pack').value,dt=$('#date').value.trim();
+    text='Hello The Gramma,\n\nOccasion: '+ev+'\nExperience: '+pk+'\nDate: '+(dt||'Not decided yet')+'\n\n'+msg+'\n\nWarmly,\n'+name+'\n'+email;
+    $('#sentText').textContent=text;
+    $('#mailBtn').href='mailto:'+TO+'?subject='+encodeURIComponent('Invitation enquiry · '+ev+' · '+pk)+'&body='+encodeURIComponent(text);
+    form.style.display='none';sent.classList.add('show');
+    sent.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+  });
+  $('#editBtn').onclick=()=>{sent.classList.remove('show');form.style.display='';};
+  $('#copyBtn').onclick=async function(){
+    try{await navigator.clipboard.writeText(text);this.textContent='Copied';}
+    catch(_){const r=document.createRange();r.selectNodeContents($('#sentText'));const s=getSelection();s.removeAllRanges();s.addRange(r);this.textContent='Selected · press copy';}
+    setTimeout(()=>this.textContent='Copy message',2200);
+  };
+})();
+</script>
+
+</body>
+</html>
